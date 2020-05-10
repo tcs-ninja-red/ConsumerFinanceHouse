@@ -119,7 +119,7 @@ var priceVal, colorVal, bodyTypeVal, fuelVal,transVal;
             });
             console.log(makeArr);
             this.setState({
-              makeList: makeArr
+              makeList: makeArr 
             });
           },            
           (error) => {
