@@ -100,8 +100,6 @@ function getMakes() {
   export class SampleForm extends Component {
     constructor() {
         super();        
-
-        
         //set state properties
         this.state = {makeValue:'', modelValue:'',   descValue:'',  
         priceVal:'', bodyTypeVal: '',  colorVal: ''   , transVal:'',
@@ -113,6 +111,30 @@ function getMakes() {
         this.handleChangeMake = this.handleChangeMake.bind(this);
         this.handleChangeModel = this.handleChangeModel.bind(this);
         this.handleChangeDesc = this.handleChangeDesc.bind(this);
+      }
+
+      ///API Call: currently not returning any lists..once it returns lists then bind with DDLs
+      componentDidMount() {
+        fetch("http://localhost:2000/api/v1/vehicles/makes?model_year=2019")
+          .then(res => res.json())
+          .then(
+            (result) => {
+              console.log(result); //no list returned currently
+              this.setState({
+                isLoaded: true,
+                items: result.items
+              });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                error
+              });
+            }
+          )
       }
 
      
