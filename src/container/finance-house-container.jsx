@@ -12,7 +12,7 @@ render() {
       <div>
         Home Page
           <button onClick={onQuote}>Go To Quotes</button>
-          <button onClick={onForm}>Go To Form</button>
+          <button onClick={onForm}>Go To Finance House</button>
       </div>
     </React.Fragment>
 
