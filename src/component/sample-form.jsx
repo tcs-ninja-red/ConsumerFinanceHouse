@@ -106,7 +106,7 @@ var priceVal, colorVal, bodyTypeVal, fuelVal,transVal;
 
       //get makes from API
        getMakes() {
-        fetch("http://localhost:44301/api/v1/vehicles/makes")
+        fetch("http://20.39.216.252/:44301/api/v1/vehicles/makes")
         .then(res => res.json())
         .then(
           (result) => {
@@ -121,7 +121,7 @@ var priceVal, colorVal, bodyTypeVal, fuelVal,transVal;
             this.setState({
               makeList: makeArr 
             });
-          },            
+          },              
           (error) => {
             this.setState({
               error
