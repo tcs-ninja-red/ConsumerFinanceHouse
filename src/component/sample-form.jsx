@@ -8,7 +8,7 @@ import { HeaderBar } from './header';
 const vehicles =   
 [
     {
-        make_name: "Audi",
+        make_name: "Chevrolet",
         model_name: "A4",
         description: "Sports car",
         cash_price: 500000.00,
@@ -21,7 +21,7 @@ const vehicles =
         vehicle_id: "VH01"
     },
     {
-        make_name: "BMW",
+        make_name: "Chevrolet",
         model_name: "X5",
         description: "Small car 1.4",
         cash_price: 500000.00,
@@ -34,7 +34,7 @@ const vehicles =
         vehicle_id: "VH01"
     },
     {
-        make_name: "Jaguar",
+        make_name: "Ferrari",
         model_name: "F-Pace",
         description: "Compact Luxury",
         cash_price: 480000,
@@ -48,7 +48,7 @@ const vehicles =
     }
     ,
     {
-        make_name: "Land Rover",
+        make_name: "Ferrari",
         model_name: "E-Pace",
         description: "Compact SUV",
         cash_price: 480000,
@@ -65,16 +65,7 @@ const vehicles =
 
 //Todo--Get the values from API instead of static data
 var priceVal, colorVal, bodyTypeVal, fuelVal,transVal;
-function getMakes() {
-    var makeArr = [];
-    var counter = 0;
-    var a = vehicles.forEach(function(item){        
-        counter++;
-        //if(makeArr.indexOf({'id': item.make_name, 'value': item.make_name}) != -1)
-            makeArr.push({'id': counter, 'value': item.make_name});
-        });
-        return makeArr;
-  }
+
 
   function getModelDescFromMake(selectedMake, isModel) {
     var modelLst = [];
@@ -103,7 +94,7 @@ function getMakes() {
         //set state properties
         this.state = {makeValue:'', modelValue:'',   descValue:'',  
         priceVal:'', bodyTypeVal: '',  colorVal: ''   , transVal:'',
-        makeList: getMakes(),
+        makeList: [],//getMakes(),
         modelList: [],
         descList: []};
       
@@ -113,28 +104,61 @@ function getMakes() {
         this.handleChangeDesc = this.handleChangeDesc.bind(this);
       }
 
-      ///API Call: currently not returning any lists..once it returns lists then bind with DDLs
-      componentDidMount() {
-        fetch("http://localhost:2000/api/v1/vehicles/makes?model_year=2019")
+      //get makes from API
+       getMakes() {
+        fetch("http://localhost:44301/api/v1/vehicles/makes")
+        .then(res => res.json())
+        .then(
+          (result) => {
+            console.log(result); 
+            var makeArr=[];
+            var counter = 0;
+            var  a = result.forEach(function(item){
+              counter++;
+              makeArr.push({'id': counter, 'value': item});
+            });
+            console.log(makeArr);
+            this.setState({
+              makeList: makeArr
+            });
+          },            
+          (error) => {
+            this.setState({
+              error
+            });
+          }
+        )
+        }
+
+        getModels(make) {
+          fetch("http://localhost:44301/api/v1/vehicles/makes")
           .then(res => res.json())
           .then(
             (result) => {
-              console.log(result); //no list returned currently
-              this.setState({
-                isLoaded: true,
-                items: result.items
+              console.log(result); 
+              var makeArr=[];
+              var counter = 0;
+              var  a = result.forEach(function(item){
+                counter++;
+                makeArr.push({'id': counter, 'value': item});
               });
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
+              console.log(makeArr);
+              this.setState({
+                makeList: makeArr
+              });
+            },            
             (error) => {
               this.setState({
-                isLoaded: true,
                 error
               });
             }
           )
+          }
+
+      ///API Call: currently not returning any lists..once it returns lists then bind with DDLs
+      componentDidMount() {
+        this.getMakes();
+       
       }
 
      
