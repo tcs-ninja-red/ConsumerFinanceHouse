@@ -4,6 +4,8 @@ import App from './journey/journey';
 import configureStore from './store/configureStore';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import "bootstrap/dist/css/bootstrap.min.css";
+
 
 const store = configureStore();
 
