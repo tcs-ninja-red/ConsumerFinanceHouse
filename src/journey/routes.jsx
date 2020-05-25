@@ -6,6 +6,7 @@ import QuotesContainer from "../container/quotes-container";
 import FinanceHouseContainer from "../container/finance-house-container";
 import FormContainer from "../container/form-container";
 import HomeContainer from "../container/home-container";
+import Navbar from "../component/navbar";
 
 const Routes = (props) => (
   <Switch>
@@ -17,6 +18,16 @@ const Routes = (props) => (
     <Route
       exact
       path={Navigate.TO_HOME}
+      render={(routeProps) => <HomeContainer {...routeProps} />}
+      // render={(routeProps) => (
+      //   <Navbar {...routeProps}>
+      //   <FinanceHouseContainer {...routeProps} />
+      //   </Navbar>
+      // )}
+    />
+    <Route
+      exact
+      path={Navigate.TO_FINHOUSE}
       render={(routeProps) => <FinanceHouseContainer {...routeProps} />}
     />
     <Route

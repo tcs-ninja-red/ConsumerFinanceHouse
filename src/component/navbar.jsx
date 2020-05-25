@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import { connect } from "react-redux";
-import * as Navigate from "../constants/routes-constant";
-import "./home.css";
+import "../styles/home.css";
+
 export class Navbar extends Component {
   styleBg = {
-    backgroundColor: "#c6d0dd",
+    backgroundColor: "#07294d", //"#c6d0dd",
   };
+
   render() {
-    const { onQuote, onForm } = this.props;
+    const { onQuote, onForm, onHome } = this.props;
+    console.log("onQuote", onQuote);
     return (
       <div>
         <nav className="navbar navbar-expand-lg" style={this.styleBg}>
           <a className="navbar-brand" href="#">
-            <img className="logo" src={require("../logo.png")} />
+            <img className="logo" src={require("../assets/images/logo.png")} />
           </a>
           <button
             className="navbar-toggler"
@@ -28,18 +29,18 @@ export class Navbar extends Component {
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
-                <a className="nav-link" href="#">
-                  HOME <span className="sr-only">(current)</span>
+                <a className="nav-link" href="#" onClick={onHome}>
+                  HOME
+                  <span className="sr-only">(current)</span>
                 </a>
               </li>
               <li className="nav-item">
-                {/* <a className="nav-link" onClick={onForm}>
+                <a className="nav-link" href="#" onClick={onForm}>
                   FINANCE
-                </a> */}
-                <button onClick={onForm}>Go FINANCE</button>
+                </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" onClick={onQuote}>
+                <a className="nav-link" href="#" onClick={onQuote}>
                   QUOTE
                 </a>
               </li>
@@ -57,23 +58,4 @@ export class Navbar extends Component {
   }
 }
 
-Navbar.propTypes = {};
-
-Navbar.defaultProps = {};
-
-export const mapStateToProps = (state) => ({
-  fullState: state,
-});
-
-export const mapDispatchToProps = (dispatch, ownProps) => ({
-  onQuote: () => {
-    ownProps.history.push(Navigate.TO_QUOTES);
-  },
-  onForm: () => {
-    ownProps.history.push(Navigate.TO_FORM);
-  },
-});
-
-//console.log();
-
-export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
+export default Navbar;
