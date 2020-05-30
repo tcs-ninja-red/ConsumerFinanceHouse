@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
 import { SampleField } from "./sample-field";
+import "../styles/finhouse.css";
 
 ///Sample data: todo- get it from API
 const vehicles = [
@@ -108,28 +109,36 @@ export class SampleForm extends Component {
 
   //get makes from API
   getMakes() {
-    fetch("http://20.39.216.252:44301/api/v1/vehicles/makes")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          var makeArr = [];
-          var counter = 0;
-          var a = result.forEach(function (item) {
-            counter++;
-            makeArr.push({ id: counter, value: item });
-          });
-          console.log(makeArr);
-          this.setState({
-            makeList: makeArr,
-          });
-        },
-        (error) => {
-          this.setState({
-            error,
-          });
-        }
-      );
+    var makelLst = [];
+    var counter = 0;
+    var a = vehicles.forEach(function (item) {
+      counter++;
+      makelLst.push({ id: counter, value: item.make_name });
+    });
+    console.log("makelLst", makelLst);
+    this.setState({ makeList: makelLst });
+    // fetch("http://20.39.216.252:44301/api/v1/vehicles/makes")
+    //   .then((res) => res.json())
+    //   .then(
+    //     (result) => {
+    //       console.log(result);
+    //       var makeArr = [];
+    //       var counter = 0;
+    //       var a = result.forEach(function (item) {
+    //         counter++;
+    //         makeArr.push({ id: counter, value: item });
+    //       });
+    //       console.log(makeArr);
+    //       this.setState({
+    //         makeList: makeArr,
+    //       });
+    //     },
+    //     (error) => {
+    //       this.setState({
+    //         error,
+    //       });
+    //     }
+    //   );
   }
 
   getModels(make) {
@@ -159,7 +168,7 @@ export class SampleForm extends Component {
 
   ///API Call: currently not returning any lists..once it returns lists then bind with DDLs
   componentDidMount() {
-    //this.getMakes();
+    this.getMakes();
   }
 
   //make on-change event
@@ -187,105 +196,126 @@ export class SampleForm extends Component {
     var selectedDesc = event.target[selectedIdx].text;
     this.setState({ descValue: selectedDesc });
 
-    this.setState({ priceVal: "Price: £ " + priceVal });
-    this.setState({ colorVal: "Color: " + colorVal });
-    this.setState({ bodyTypeVal: "Body Style: " + bodyTypeVal });
-    this.setState({ transVal: "Transmission: " + transVal });
+    this.setState({ priceVal: "£" + priceVal });
+    this.setState({ colorVal: colorVal });
+    this.setState({ bodyTypeVal: bodyTypeVal });
+    this.setState({ transVal: transVal });
   }
-
-  styles = {
-    margin: "8px",
-  };
 
   render() {
     console.log("fin house11");
     return (
       <React.Fragment>
-        <form>
-          <div className="container">
-            <div className="row">
-              <div className="col-sm">
-                <div className="form-group">
-                  <label>Make:</label>
-                  <select
-                    className="form-control md"
-                    onChange={this.handleChangeMake}
-                  >
-                    <option value="0">--Select a Make--</option>
-                    {this.state.makeList.map((make) => (
-                      <option key={make.id} value={make.id}>
-                        {make.value}
+        <div className="form-body">
+          <form>
+            <div className="container">
+              <div className="row">
+                <div className="col-sm">
+                  <div className="form-group">
+                    <label>Make:</label>
+                    <select
+                      className="form-control md"
+                      onChange={this.handleChangeMake}
+                    >
+                      <option className="dorpdowns" value="0">
+                        --Select a Make--
                       </option>
-                    ))}
-                  </select>
+                      {this.state.makeList.map((make) => (
+                        <option key={make.id} value={make.id}>
+                          {make.value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-sm">
+                  <div className="form-group">
+                    <label>Model:</label>
+                    <select
+                      className="form-control md"
+                      onChange={this.handleChangeModel}
+                    >
+                      <option value="0">--Select a Model--</option>
+                      {this.state.modelList.map((model) => (
+                        <option key={model.id} value={model.id}>
+                          {model.value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="col-sm">
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <select
+                      className="form-control md"
+                      onChange={this.handleChangeDesc}
+                    >
+                      <option value="0">--Select a Description--</option>
+                      {this.state.descList.map((desc) => (
+                        <option key={desc.id} value={desc.id}>
+                          {desc.value}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
                 </div>
               </div>
-              <div className="col-sm">
-                <div className="form-group">
-                  <label>Model:</label>
-                  <select
-                    className="form-control md"
-                    onChange={this.handleChangeModel}
-                  >
-                    <option value="0">--Select a Model--</option>
-                    {this.state.modelList.map((model) => (
-                      <option key={model.id} value={model.id}>
-                        {model.value}
-                      </option>
-                    ))}
-                  </select>
+            </div>
+            <hr />
+            <section class="sections">
+              <div class="row">
+                <div className="col-md-5 subsections">
+                  <h5>Vehicle Details</h5>
+                  <div className="row">
+                    <div className="col-md vehicle-header">
+                      <span>{this.state.makeValue}</span>
+                      <span>{this.state.modelValue}</span>
+                      <span>{this.state.descValue}</span>
+                    </div>
+                  </div>
+                  <div className="vehicle-items">
+                    <div className="row vehicle-item">
+                      <div className="col-sm">
+                        <label>Price: </label>
+                        <span> {this.state.priceVal}</span>
+                      </div>
+
+                      <div className="col-sm">
+                        <label>Color: </label>
+                        <span>{this.state.colorVal}</span>
+                      </div>
+                    </div>
+                    <div className="row vehicle-item">
+                      <div className="col-sm">
+                        <label>Transmission: </label>
+                        <span>{this.state.transVal}</span>
+                      </div>
+                      <div className="col-sm">
+                        <label>Body Style: </label>
+                        <span>{this.state.bodyTypeVal}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="col-md-5 subsections">
+                  <h5>Search Dealer</h5>
+                  <div className="row m-4">
+                    <label>Find a Dealer nearby</label>
+                    <input
+                      type="text"
+                      placeHolder="Enter Post code"
+                      className="form-control"
+                    ></input>
+                    <button className="button is-primary is-small">
+                      Search
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="col-sm">
-                <div className="form-group">
-                  <label>Description:</label>
-                  <select
-                    className="form-control md"
-                    onChange={this.handleChangeDesc}
-                  >
-                    <option value="0">--Select a Description--</option>
-                    {this.state.descList.map((desc) => (
-                      <option key={desc.id} value={desc.id}>
-                        {desc.value}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="container card" style={{ height: "300px" }}>
-            <div className="row">
-              <div className="col-md">
-                <span style={this.styles}>
-                  <b>{this.state.makeValue}</b>
-                </span>
-                <span style={this.styles}>
-                  <b>{this.state.modelValue}</b>
-                </span>
-                <span style={this.styles}>
-                  <b>{this.state.descValue}</b>
-                </span>
-              </div>
-            </div>
-            <div className="row m-2">
-              <div className="col-sm">
-                <span style={this.styles}>{this.state.priceVal}</span>
-              </div>
-              <div className="col-sm">
-                <span style={this.styles}>{this.state.colorVal}</span>
-              </div>
-            </div>
-            <div className="row m-2">
-              <div className="col-sm">
-                <span style={this.styles}>{this.state.transVal}</span>
-              </div>
-              <div className="col-sm">
-                <span style={this.styles}>{this.state.bodyTypeVal}</span>
-              </div>
-            </div>
-          </div>
-        </form>
+            </section>
+          </form>
+        </div>
       </React.Fragment>
     );
   }

@@ -10,9 +10,10 @@ export class HomeContainer extends Component {
             <h1>Motor Finance that Fits Your Needs</h1>
             <h4>Fast &amp; Online. Rates from 5.9% APR</h4>
             <br />
-            <a href="#" data-animation-in="lightSpeedIn">
+            {/* <a href="#" data-animation-in="lightSpeedIn">
               APPLY NOW
-            </a>
+            </a> */}
+            <button className="button is-primary is-medium ">APPLY NOW</button>
           </div>
         </div>
       </React.Fragment>
