@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import { Field } from "redux-form";
 import { SampleField } from "./sample-field";
 import "../styles/finhouse.css";
+import { useSelector } from "react-redux";
+import { connect } from "react-redux";
+//import { searchDealer } from "../actions/fin-house-actions";
+import { bindActionCreators } from "redux";
 
 ///Sample data: todo- get it from API
 const vehicles = [
@@ -99,12 +103,14 @@ export class SampleForm extends Component {
       makeList: [], //getMakes(),
       modelList: [],
       descList: [],
+      postCode: "",
     };
 
     //bind Make onchange event
     this.handleChangeMake = this.handleChangeMake.bind(this);
     this.handleChangeModel = this.handleChangeModel.bind(this);
     this.handleChangeDesc = this.handleChangeDesc.bind(this);
+    this.handlePostCodeChange = this.handlePostCodeChange.bind(this);
   }
 
   //get makes from API
@@ -202,8 +208,16 @@ export class SampleForm extends Component {
     this.setState({ transVal: transVal });
   }
 
+  handlePostCodeChange(event) {
+    this.setState({ postCode: event.target.value });
+  }
+
   render() {
     console.log("fin house11");
+    const { postcode } = this.props;
+    const { searchResults } = this.props;
+    //const { searchResults } = this.props.dealerSearchResult;
+    console.log("fin22", searchResults);
     return (
       <React.Fragment>
         <div className="form-body">
@@ -263,8 +277,8 @@ export class SampleForm extends Component {
               </div>
             </div>
             <hr />
-            <section class="sections">
-              <div class="row">
+            <section className="sections">
+              <div className="row">
                 <div className="col-md-5 subsections">
                   <h5>Vehicle Details</h5>
                   <div className="row">
@@ -304,12 +318,30 @@ export class SampleForm extends Component {
                     <label>Find a Dealer nearby</label>
                     <input
                       type="text"
-                      placeHolder="Enter Post code"
+                      onChange={this.handlePostCodeChange}
+                      placeholder="Enter Post code"
                       className="form-control"
                     ></input>
-                    <button className="button is-primary is-small">
+                    <button
+                      onClick={() =>
+                        this.props.searchDealer(this.state.postCode)
+                      }
+                      className="button is-primary is-small"
+                    >
                       Search
                     </button>
+                  </div>
+                  <div className="row m-4">
+                    {/* {searchResults.dealerSearchResults ? (
+                      searchResults.dealerSearchResults.map((model) => (
+                        <div>
+                          <a key={model.eastings} value={model.postcode}></a>
+                        </div>
+                      ))
+                    ) : (
+                      <span>{searchResults.dealerSearchResults}</span>
+                    )} */}
+                    <span>{searchResults.dealerSearchResults}</span>
                   </div>
                 </div>
               </div>
