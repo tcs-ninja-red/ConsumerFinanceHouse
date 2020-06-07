@@ -17,13 +17,6 @@ const financeHouse = (state = initialState, action) => {
       return {
         ...state,
         dealerSearchResults: action.json,
-        // dealerSearchResults: () => {
-        //   let arr = [];
-        //   action.json.forEach((element) =>
-        //     arr.push({ id: element.eastings, val: element.postcode })
-        //   );
-        //   return arr;
-        //},
         loading: false,
       };
     default:

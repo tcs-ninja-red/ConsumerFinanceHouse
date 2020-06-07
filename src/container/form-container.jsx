@@ -20,7 +20,7 @@ const FormContainer = new reduxForm({
 
 FormContainer.defaultProps = {};
 export const mapStateToProps = (state) => ({
-  searchResults: state.financeHouse,
+  financeHouseState: state.financeHouse,
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

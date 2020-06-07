@@ -215,9 +215,9 @@ export class SampleForm extends Component {
   render() {
     console.log("fin house11");
     const { postcode } = this.props;
-    const { searchResults } = this.props;
+    const { financeHouseState } = this.props;
     //const { searchResults } = this.props.dealerSearchResult;
-    console.log("fin22", searchResults);
+    //console.log("fin22", financeHouseState);
     return (
       <React.Fragment>
         <div className="form-body">
@@ -331,17 +331,22 @@ export class SampleForm extends Component {
                       Search
                     </button>
                   </div>
-                  <div className="row m-4">
-                    {/* {searchResults.dealerSearchResults ? (
-                      searchResults.dealerSearchResults.map((model) => (
-                        <div>
-                          <a key={model.eastings} value={model.postcode}></a>
-                        </div>
-                      ))
+                  <div className="dealer-list">
+                    {financeHouseState.dealerSearchResults &&
+                    financeHouseState.dealerSearchResults.result ? (
+                      financeHouseState.dealerSearchResults.result
+                        .slice(0, 5)
+                        .map((model, idx) => (
+                          //console.log(idx)
+                          <div className="row dealer-list-item" key={idx}>
+                            <a key={idx}>
+                              {model.postcode + " - " + model.admin_ward}
+                            </a>
+                          </div>
+                        ))
                     ) : (
-                      <span>{searchResults.dealerSearchResults}</span>
-                    )} */}
-                    <span>{searchResults.dealerSearchResults}</span>
+                      <span>{financeHouseState.dealerSearchResults.error}</span>
+                    )}
                   </div>
                 </div>
               </div>

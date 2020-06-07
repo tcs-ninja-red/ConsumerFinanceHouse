@@ -51,6 +51,14 @@
   color: #003e52;
 }
 
+.dealer-list {
+  margin: 20px 20px 20px 60px;
+}
+.dealer-list-item {
+  color: #003e52;
+  text-decoration: underline;
+}
+
 .subsections span {
   color: #003e52;
   font-size: 12px;

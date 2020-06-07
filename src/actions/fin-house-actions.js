@@ -26,13 +26,7 @@ export function searchDealer(postcode) {
       )
       .then((json) => {
         console.log("response1", json);
-        let arr = [];
-        if (json && json.result) {
-          json.result.forEach((element) =>
-            arr.push({ id: element.eastings, val: element.postcode })
-          );
-          dispatch(receivedPosts(JSON.stringify(arr)));
-        }
+        dispatch(receivedPosts(json));
       });
   };
 }
