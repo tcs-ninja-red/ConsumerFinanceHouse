@@ -1,0 +1,80 @@
+.logo {
+  width: 100px;
+  height: 70px;
+}
+
+/* .nav-bg-custom {
+  background-color: #d8f5ff;
+} */
+
+.banner {
+  background-image: url("../assets/images/banner.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: auto;
+  height: 450px;
+  filter: blur(3px);
+}
+
+.site-name {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  font-size: larger;
+  color: #00d1b2; /*#ec7063;*/ /* #088da5;*/
+}
+
+.nav-item {
+  padding: 10px;
+}
+
+.nav-link {
+  color: #ffc600; /* #d08244; */
+  font-weight: 500;
+}
+
+.slider-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  text-align: center;
+}
+
+.slider-overlay a {
+  margin-top: 1%;
+  padding: 15px 20px;
+  border: 1px solid #ffc600; /*#ff3115;*/
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #ec7063; /*#ff3115;*/
+  color: white;
+  border-radius: 5%;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: ease-in;
+}
+
+/*color transition on button hover*/
+.slider-overlay a:hover {
+  background-color: #ffc600; /*#da1820;*/ /*#ea0808;*/
+  border-radius: 7%;
+  text-decoration: none;
+}
+
+.slider-overlay h1 {
+  font-weight: bold;
+  font-size: 30px;
+  position: relative;
+  color: #ffc600;
+}
+
+/*When screen size is smaller: clears floats and other alignments*/
+@media (max-width: 768px) {
+  .navbar div {
+    float: none;
+  }
+}
