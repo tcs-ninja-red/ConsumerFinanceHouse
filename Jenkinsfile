@@ -18,7 +18,7 @@ pipeline {
         stage('Build') {
             steps {
                sh "docker images"
-               sh "docker build -t consiumer-finance-house-cwa:v${BUILD_NUMBER} ."
+               sh "docker build -t consumer-finance-house-cwa:v${BUILD_NUMBER} ."
                sh "docker images"
             }
         }
