@@ -8,6 +8,6 @@ RUN yarn
 
 RUN yarn build
 
-FROM nginx
+FROM nginx:stable-alpine
 
-COPY --from=builder /app/build /usr/share/nginx/html
+COPY --from=build /app/build /usr/share/nginx/html
