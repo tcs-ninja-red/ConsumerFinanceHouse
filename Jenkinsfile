@@ -3,6 +3,7 @@ pipeline {
       stages {
         stage('Checkout') {
             steps {
+                step([$class: 'WsCleanup'])
                 checkout scm
             }
         }
@@ -16,7 +17,9 @@ pipeline {
         }
         stage('Build') {
             steps {
-                echo 'Building..'
+               sh "docker images"
+               sh "docker build -t consiumer-finance-house-cwa:v${BUILD_NUMBER} ."
+               sh "docker images"
             }
         }
         stage('Test') {
