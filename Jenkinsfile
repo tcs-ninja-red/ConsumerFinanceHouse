@@ -33,7 +33,7 @@ pipeline {
                 sh 'docker stop cwa-container || exit 0'
                 sh 'docker kill cwa-container || exit 0'
                 sh 'docker rm cwa-container || exit 0'
-                sh "docker run --name cwa-container -p 80:80 consumer-finance-house-cwa:${BUILD_NUMBER} &"
+                sh "docker run --name cwa-container -p 80:80 consumer-finance-house-cwa:v${BUILD_NUMBER} &"
                 sh "docker ps -a"
             }
         }
