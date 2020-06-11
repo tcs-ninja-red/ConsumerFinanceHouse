@@ -4,14 +4,13 @@ import { SampleField } from "./sample-field";
 import "../styles/finhouse.css";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
-//import { searchDealer } from "../actions/fin-house-actions";
 import { bindActionCreators } from "redux";
 
 ///Sample data: todo- get it from API
 const vehicles = [
   {
     make_name: "Chevrolet",
-    model_name: "A4",
+    model_name: "Aveo",
     description: "Sports car",
     cash_price: 500000.0,
     color:
@@ -195,6 +194,7 @@ export class SampleForm extends Component {
     var selectedIdx = event.target.selectedIndex;
     var selectedModel = event.target[selectedIdx].text;
     this.setState({ modelValue: selectedModel });
+    this.props.getVehicleDescriptions(this.state.makeValue, selectedModel);
   }
 
   handleChangeDesc(event) {
@@ -217,7 +217,7 @@ export class SampleForm extends Component {
     const { postcode } = this.props;
     const { financeHouseState } = this.props;
     //const { searchResults } = this.props.dealerSearchResult;
-    //console.log("fin22", financeHouseState);
+    console.log("fin22", financeHouseState);
     return (
       <React.Fragment>
         <div className="form-body">
@@ -232,7 +232,7 @@ export class SampleForm extends Component {
                       onChange={this.handleChangeMake}
                     >
                       <option className="dorpdowns" value="0">
-                        --Select a Make--
+                        Select a Make
                       </option>
                       {this.state.makeList.map((make) => (
                         <option key={make.id} value={make.id}>
@@ -249,7 +249,7 @@ export class SampleForm extends Component {
                       className="form-control md"
                       onChange={this.handleChangeModel}
                     >
-                      <option value="0">--Select a Model--</option>
+                      <option value="0">Select a Model</option>
                       {this.state.modelList.map((model) => (
                         <option key={model.id} value={model.id}>
                           {model.value}
@@ -265,12 +265,24 @@ export class SampleForm extends Component {
                       className="form-control md"
                       onChange={this.handleChangeDesc}
                     >
-                      <option value="0">--Select a Description--</option>
-                      {this.state.descList.map((desc) => (
+                      <option value="0">Select a Description</option>
+                      {/* {this.state.descList.map((desc) => (
                         <option key={desc.id} value={desc.id}>
                           {desc.value}
                         </option>
-                      ))}
+                      ))} */}
+                      {financeHouseState.descriptionList &&
+                      financeHouseState.descriptionList.length > 0 ? (
+                        financeHouseState.descriptionList.map((model, idx) => (
+                          <option key={idx} value={idx}>
+                            {model.description}
+                          </option>
+                        ))
+                      ) : (
+                        <span>
+                          {financeHouseState.dealerSearchResults.message}
+                        </span>
+                      )}
                     </select>
                   </div>
                 </div>
@@ -333,19 +345,21 @@ export class SampleForm extends Component {
                   </div>
                   <div className="dealer-list">
                     {financeHouseState.dealerSearchResults &&
-                    financeHouseState.dealerSearchResults.result ? (
-                      financeHouseState.dealerSearchResults.result
-                        .slice(0, 5)
-                        .map((model, idx) => (
+                    financeHouseState.dealerSearchResults.length > 0 ? (
+                      financeHouseState.dealerSearchResults.map(
+                        (model, idx) => (
                           //console.log(idx)
                           <div className="row dealer-list-item" key={idx}>
                             <a key={idx}>
-                              {model.postcode + " - " + model.admin_ward}
+                              {model.dealer_name + ", " + model.town}
                             </a>
                           </div>
-                        ))
+                        )
+                      )
                     ) : (
-                      <span>{financeHouseState.dealerSearchResults.error}</span>
+                      <span>
+                        {financeHouseState.dealerSearchResults.message}
+                      </span>
                     )}
                   </div>
                 </div>
