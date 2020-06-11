@@ -6,6 +6,14 @@ pipeline {
                 checkout scm
             }
         }
+        stage('Environment') {
+            steps {
+                sh 'git --version'
+                echo "Branch: ${env.BRANCH_NAME}"
+                sh 'docker -v'
+                sh 'printenv'
+            }
+        }
         stage('Build') {
             steps {
                 echo 'Building..'
