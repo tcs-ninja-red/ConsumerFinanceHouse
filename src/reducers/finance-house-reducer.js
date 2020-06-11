@@ -1,18 +1,39 @@
-import { REQUEST_POSTS, RECEIVE_POSTS } from "../actions/fin-house-actions";
+import {
+  GET_MAKE,
+  GET_MODEL,
+  GET_DESC,
+  SEARCH_DEALERS,
+} from "../actions/fin-house-actions";
 const initialState = {
   //postCode: "",
   dealerSearchResults: "",
+  makeList: "",
+  modelList: "",
+  descriptionList: "",
 };
 
 const financeHouse = (state = initialState, action) => {
   console.log("action.type", action.type);
   switch (action.type) {
-    // case "SEARCH_DEALER":
-    //   console.log("state", state);
-    //   return action.payload + "HII";
-    case REQUEST_POSTS:
-      return { ...state, loading: true };
-    case RECEIVE_POSTS:
+    case GET_MAKE:
+      return {
+        ...state,
+        makeList: action.json,
+        loading: false,
+      };
+    case GET_MODEL:
+      return {
+        ...state,
+        modelList: action.json,
+        loading: false,
+      };
+    case GET_DESC:
+      return {
+        ...state,
+        descriptionList: action.json,
+        loading: false,
+      };
+    case SEARCH_DEALERS:
       //console.log("action.json", action.json);
       return {
         ...state,
