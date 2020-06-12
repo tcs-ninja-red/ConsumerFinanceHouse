@@ -2,90 +2,6 @@ import React, { Component } from "react";
 import { Field } from "redux-form";
 import { SampleField } from "./sample-field";
 import "../styles/finhouse.css";
-import { useSelector } from "react-redux";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
-
-///Sample data: todo- get it from API
-const vehicles = [
-  {
-    make_name: "Chevrolet",
-    model_name: "Aveo",
-    description: "Sports car",
-    cash_price: 500000.0,
-    color:
-      "Intense Black;Cashmere;Sterling Silver;Blazing Red;Platinum Metallic;Amber;Casablanca White;",
-    transmission: "Manual",
-    fuel_type: "Petrol",
-    body_style: "Sedan",
-    model_year: 2006,
-    vehicle_mileage: 40000,
-    vehicle_id: "VH01",
-  },
-  {
-    make_name: "Chevrolet",
-    model_name: "X5",
-    description: "Small car 1.4",
-    cash_price: 500000.0,
-    color:
-      "Intense Black;Cashmere;Sterling Silver;Blazing Red;Platinum Metallic;Amber;Casablanca White;",
-    transmission: "Manual",
-    fuel_type: "Petrol",
-    body_style: "Sedan",
-    model_year: 2006,
-    vehicle_mileage: 40000,
-    vehicle_id: "VH01",
-  },
-  {
-    make_name: "Ferrari",
-    model_name: "F-Pace",
-    description: "Compact Luxury",
-    cash_price: 480000,
-    color:
-      "Caviar Black;Cavlar Black + Linen Beige;Velvet Red;Velvet Red + Linen Beige;Sandrift Grey + Linen Beige;Switchbleade Silver;Summit White;Linen Beige;Moonbeam White + Linen Beige;Moonbeam White;aviar Black;Sanddrift Grey;Velvet Red;Linen Beige;Moonbeam White;Summit White;",
-    transmission: "Manual",
-    fuel_type: "Diesel",
-    body_style: "SUV",
-    model_year: 2008,
-    vehicle_mileage: 40000,
-    vehicle_id: "VH01",
-  },
-  {
-    make_name: "Ferrari",
-    model_name: "E-Pace",
-    description: "Compact SUV",
-    cash_price: 480000,
-    color:
-      "Caviar Black;;Velvet Red;Velvet Red + Linen Beige;Switchbleade Silver;Summit White;Linen Beige;Moonbeam White + Linen Beige;Moonbeam White;aviar Black;Sanddrift Grey;Velvet Red;Linen Beige;Moonbeam White;Summit White;",
-    transmission: "Manual",
-    fuel_type: "Diesel",
-    body_style: "SUV",
-    model_year: 2008,
-    vehicle_mileage: 40000,
-    vehicle_id: "VH01",
-  },
-];
-
-//Todo--Get the values from API instead of static data
-var priceVal, colorVal, bodyTypeVal, fuelVal, transVal;
-
-function getModelDescFromMake(selectedMake, isModel) {
-  var modelLst = [];
-  var counter = 0;
-  var a = vehicles.forEach(function (item) {
-    counter++;
-    if (item.make_name == selectedMake) {
-      if (isModel) modelLst.push({ id: counter, value: item.model_name });
-      else modelLst.push({ id: counter, value: item.description });
-
-      priceVal = item.cash_price;
-      bodyTypeVal = item.body_style;
-      colorVal = item.color;
-      transVal = item.transmission;
-    }
-  });
-  return modelLst;
-}
 
 export class SampleForm extends Component {
   constructor() {
@@ -95,11 +11,7 @@ export class SampleForm extends Component {
       makeValue: "",
       modelValue: "",
       descValue: "",
-      priceVal: "",
-      bodyTypeVal: "",
-      colorVal: "",
-      transVal: "",
-      makeList: [], //getMakes(),
+      makeList: [],
       modelList: [],
       descList: [],
       postCode: "",
@@ -112,68 +24,8 @@ export class SampleForm extends Component {
     this.handlePostCodeChange = this.handlePostCodeChange.bind(this);
   }
 
-  //get makes from API
-  getMakes() {
-    var makelLst = [];
-    var counter = 0;
-    var a = vehicles.forEach(function (item) {
-      counter++;
-      makelLst.push({ id: counter, value: item.make_name });
-    });
-    console.log("makelLst", makelLst);
-    this.setState({ makeList: makelLst });
-    // fetch("http://20.39.216.252:44301/api/v1/vehicles/makes")
-    //   .then((res) => res.json())
-    //   .then(
-    //     (result) => {
-    //       console.log(result);
-    //       var makeArr = [];
-    //       var counter = 0;
-    //       var a = result.forEach(function (item) {
-    //         counter++;
-    //         makeArr.push({ id: counter, value: item });
-    //       });
-    //       console.log(makeArr);
-    //       this.setState({
-    //         makeList: makeArr,
-    //       });
-    //     },
-    //     (error) => {
-    //       this.setState({
-    //         error,
-    //       });
-    //     }
-    //   );
-  }
-
-  getModels(make) {
-    fetch("http://localhost:44301/api/v1/vehicles/makes")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          var makeArr = [];
-          var counter = 0;
-          var a = result.forEach(function (item) {
-            counter++;
-            makeArr.push({ id: counter, value: item });
-          });
-          console.log(makeArr);
-          this.setState({
-            makeList: makeArr,
-          });
-        },
-        (error) => {
-          this.setState({
-            error,
-          });
-        }
-      );
-  }
-
-  ///API Call: currently not returning any lists..once it returns lists then bind with DDLs
   componentDidMount() {
-    this.getMakes();
+    this.props.getVehicleMakes();
   }
 
   //make on-change event
@@ -182,12 +34,7 @@ export class SampleForm extends Component {
     var selectedMake = event.target[selectedIdx].text;
     this.setState({ makeValue: selectedMake });
 
-    console.log(getModelDescFromMake(selectedMake, "model_name"));
-    //set Model List options
-    this.setState({ modelList: getModelDescFromMake(selectedMake, true) });
-
-    //set Description List options: shouldn't be a DDL I guess
-    this.setState({ descList: getModelDescFromMake(selectedMake, false) });
+    this.props.getVehicleModels(selectedMake);
   }
 
   handleChangeModel(event) {
@@ -202,10 +49,11 @@ export class SampleForm extends Component {
     var selectedDesc = event.target[selectedIdx].text;
     this.setState({ descValue: selectedDesc });
 
-    this.setState({ priceVal: "£" + priceVal });
-    this.setState({ colorVal: colorVal });
-    this.setState({ bodyTypeVal: bodyTypeVal });
-    this.setState({ transVal: transVal });
+    this.props.getVehicleDetails(
+      this.state.makeValue,
+      this.state.modelValue,
+      selectedDesc
+    );
   }
 
   handlePostCodeChange(event) {
@@ -234,11 +82,18 @@ export class SampleForm extends Component {
                       <option className="dorpdowns" value="0">
                         Select a Make
                       </option>
-                      {this.state.makeList.map((make) => (
+                      {/* {this.state.makeList.map((make) => (
                         <option key={make.id} value={make.id}>
                           {make.value}
                         </option>
-                      ))}
+                      ))} */}
+                      {financeHouseState.makeList &&
+                        financeHouseState.makeList.length > 0 &&
+                        financeHouseState.makeList.map((model, idx) => (
+                          <option key={idx} value={idx}>
+                            {model}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>
@@ -250,11 +105,13 @@ export class SampleForm extends Component {
                       onChange={this.handleChangeModel}
                     >
                       <option value="0">Select a Model</option>
-                      {this.state.modelList.map((model) => (
-                        <option key={model.id} value={model.id}>
-                          {model.value}
-                        </option>
-                      ))}
+                      {financeHouseState.modelList &&
+                        financeHouseState.modelList.length > 0 &&
+                        financeHouseState.modelList.map((model, idx) => (
+                          <option key={idx} value={idx}>
+                            {model}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>
@@ -266,23 +123,23 @@ export class SampleForm extends Component {
                       onChange={this.handleChangeDesc}
                     >
                       <option value="0">Select a Description</option>
-                      {/* {this.state.descList.map((desc) => (
-                        <option key={desc.id} value={desc.id}>
-                          {desc.value}
-                        </option>
-                      ))} */}
-                      {financeHouseState.descriptionList &&
-                      financeHouseState.descriptionList.length > 0 ? (
-                        financeHouseState.descriptionList.map((model, idx) => (
-                          <option key={idx} value={idx}>
-                            {model.description}
-                          </option>
-                        ))
-                      ) : (
-                        <span>
-                          {financeHouseState.dealerSearchResults.message}
-                        </span>
-                      )}
+
+                      {
+                        financeHouseState.descriptionList &&
+                          financeHouseState.descriptionList.length > 0 &&
+                          financeHouseState.descriptionList.map(
+                            (model, idx) => (
+                              <option key={idx} value={idx}>
+                                {model}
+                              </option>
+                            )
+                          )
+                        // : (
+                        //   <span>
+                        //     {financeHouseState.dealerSearchResults.message}
+                        //   </span>
+                        // )
+                      }
                     </select>
                   </div>
                 </div>
@@ -303,23 +160,54 @@ export class SampleForm extends Component {
                   <div className="vehicle-items">
                     <div className="row vehicle-item">
                       <div className="col-sm">
-                        <label>Price: </label>
-                        <span> {this.state.priceVal}</span>
+                        <label>Price(£): </label>
+                        {/* <span> {this.state.priceVal}</span> */}
+                        {financeHouseState.vehicleDetails &&
+                        financeHouseState.vehicleDetails.length > 0 ? (
+                          financeHouseState.vehicleDetails.map((model, idx) => (
+                            <span key={idx}>{model.cash_price}</span>
+                          ))
+                        ) : (
+                          <span>{""}</span>
+                        )}
                       </div>
 
                       <div className="col-sm">
                         <label>Color: </label>
-                        <span>{this.state.colorVal}</span>
+                        {financeHouseState.vehicleDetails &&
+                        financeHouseState.vehicleDetails.length > 0 ? (
+                          financeHouseState.vehicleDetails.map((model, idx) => (
+                            <span key={idx}>
+                              {model.color.toString().substring(0, 130)}
+                            </span>
+                          ))
+                        ) : (
+                          <span>{""}</span>
+                        )}
                       </div>
                     </div>
                     <div className="row vehicle-item">
                       <div className="col-sm">
                         <label>Transmission: </label>
-                        <span>{this.state.transVal}</span>
+                        {financeHouseState.vehicleDetails &&
+                        financeHouseState.vehicleDetails.length > 0 ? (
+                          financeHouseState.vehicleDetails.map((model, idx) => (
+                            <span key={idx}>{model.transmission}</span>
+                          ))
+                        ) : (
+                          <span>{""}</span>
+                        )}
                       </div>
                       <div className="col-sm">
                         <label>Body Style: </label>
-                        <span>{this.state.bodyTypeVal}</span>
+                        {financeHouseState.vehicleDetails &&
+                        financeHouseState.vehicleDetails.length > 0 ? (
+                          financeHouseState.vehicleDetails.map((model, idx) => (
+                            <span key={idx}>{model.body_style}</span>
+                          ))
+                        ) : (
+                          <span>{""}</span>
+                        )}
                       </div>
                     </div>
                   </div>

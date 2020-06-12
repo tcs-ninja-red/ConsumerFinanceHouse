@@ -2,6 +2,7 @@ import {
   GET_MAKE,
   GET_MODEL,
   GET_DESC,
+  GET_VEH,
   SEARCH_DEALERS,
 } from "../actions/fin-house-actions";
 const initialState = {
@@ -25,6 +26,12 @@ const financeHouse = (state = initialState, action) => {
       return {
         ...state,
         modelList: action.json,
+        loading: false,
+      };
+    case GET_VEH:
+      return {
+        ...state,
+        vehicleDetails: action.json,
         loading: false,
       };
     case GET_DESC:

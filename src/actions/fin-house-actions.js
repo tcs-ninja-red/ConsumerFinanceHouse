@@ -1,6 +1,7 @@
 export const GET_MAKE = "GET_MAKE";
 export const GET_MODEL = "GET_MODEL";
 export const GET_DESC = "GET_DESC";
+export const GET_VEH = "GET_VEH";
 export const SEARCH_DEALERS = "SEARCH_DEALERS";
 
 export const getMake = (json) => ({
@@ -13,6 +14,10 @@ export const getModel = (json) => ({
 });
 export const getDescription = (json) => ({
   type: GET_DESC,
+  json: json,
+});
+export const getVehicle = (json) => ({
+  type: GET_VEH,
   json: json,
 });
 export const searchResults = (json) => ({
@@ -31,7 +36,7 @@ export function searchDealer(postcode) {
         (error) => console.log("An error occurred.", error)
       )
       .then((json) => {
-        console.log("response1", json);
+        //console.log("response1", json);
         dispatch(searchResults(json));
       });
   };
@@ -46,7 +51,7 @@ export function getVehicleMakes() {
         (error) => console.log("An error occurred.", error)
       )
       .then((json) => {
-        console.log("responseMakes", json);
+        //console.log("responseMakes", json);
         dispatch(getMake(json));
       });
   };
@@ -61,7 +66,7 @@ export function getVehicleModels(make) {
         (error) => console.log("An error occurred.", error)
       )
       .then((json) => {
-        console.log("responseModel", json);
+        // console.log("responseModel", json);
         dispatch(getModel(json));
       });
   };
@@ -78,8 +83,25 @@ export function getVehicleDescriptions(make, model) {
         (error) => console.log("An error occurred.", error)
       )
       .then((json) => {
-        console.log("responseDesc", json);
+        //console.log("responseDesc", json);
         dispatch(getDescription(json));
+      });
+  };
+}
+
+///Get Vehicle Details
+export function getVehicleDetails(make, model, description) {
+  return function (dispatch) {
+    return fetch(
+      `http://localhost:44301/api/v1/vehicles?make_name=${make}&model_name=${model}&description=${description}`
+    )
+      .then(
+        (response) => response.json(),
+        (error) => console.log("An error occurred.", error)
+      )
+      .then((json) => {
+        //console.log("responseVeh", json);
+        dispatch(getVehicle(json));
       });
   };
 }
