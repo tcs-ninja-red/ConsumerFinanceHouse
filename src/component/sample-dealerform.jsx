@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "../styles/home.css";
-import { GridComponent, ColumnDirective, ColumnsDirective } from '@syncfusion/ej2-react-grids';
+import { GridComponent, ColumnDirective, ColumnsDirective, Page, Inject, Filter, Group } from '@syncfusion/ej2-react-grids';
 import data from "../dataSource.json";
 
 
@@ -234,7 +234,27 @@ export class SampledealerForm extends Component {
               <h5>Vehicle Details</h5>
 
               <div >
-                <GridComponent dataSource={data}></GridComponent>
+                <GridComponent dataSource={data}
+                  allowPaging={true}
+                  pageSettings={{ pageSize: 2 }}
+                  allowFiltering={true}
+                  allowGrouping={true}
+                >
+                  <ColumnsDirective>
+                    <ColumnDirective type='checkbox' width='50'></ColumnDirective>
+                    <ColumnDirective field='make_name' headerText='Make' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='model_name' headerText='Model' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='description' headerText='Description' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='cash_price' headerText='Cash' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='color' headerText='Color' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='transmission' headerText='Transmission' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='fuel_type' headerText='Fuel Type' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='body_style' headerText='Body Style' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='model_year' headerText='Model Year' textalign='Right' width='100'></ColumnDirective>
+                    <ColumnDirective field='vehicle_mileage' headerText='Vehicle Mileage' textalign='Right' width='100'></ColumnDirective>
+                  </ColumnsDirective>
+                  <Inject services={[Page, Filter, Group]} />
+                </GridComponent>
               </div>
             </div>
 
