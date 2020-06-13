@@ -70,86 +70,84 @@ export class SampleForm extends Component {
       <React.Fragment>
         <div className="form-body">
           <form>
-            <div className="container">
+            <section className="sections">
               <div className="row">
-                <div className="col-sm">
-                  <div className="form-group">
-                    <label>Make:</label>
-                    <select
-                      className="form-control md"
-                      onChange={this.handleChangeMake}
-                    >
-                      <option className="dorpdowns" value="0">
-                        Select a Make
-                      </option>
-                      {/* {this.state.makeList.map((make) => (
+                <div className="col-md-7 subsections">
+                  <h6>Search Vehicle</h6>
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-sm">
+                        <div className="form-group">
+                          <label>Make:</label>
+                          <select
+                            className="form-control md"
+                            onChange={this.handleChangeMake}
+                          >
+                            <option className="dorpdowns" value="0"></option>
+                            {/* {this.state.makeList.map((make) => (
                         <option key={make.id} value={make.id}>
                           {make.value}
                         </option>
                       ))} */}
-                      {financeHouseState.makeList &&
-                        financeHouseState.makeList.length > 0 &&
-                        financeHouseState.makeList.map((model, idx) => (
-                          <option key={idx} value={idx}>
-                            {model}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="col-sm">
-                  <div className="form-group">
-                    <label>Model:</label>
-                    <select
-                      className="form-control md"
-                      onChange={this.handleChangeModel}
-                    >
-                      <option value="0">Select a Model</option>
-                      {financeHouseState.modelList &&
-                        financeHouseState.modelList.length > 0 &&
-                        financeHouseState.modelList.map((model, idx) => (
-                          <option key={idx} value={idx}>
-                            {model}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="col-sm">
-                  <div className="form-group">
-                    <label>Description:</label>
-                    <select
-                      className="form-control md"
-                      onChange={this.handleChangeDesc}
-                    >
-                      <option value="0">Select a Description</option>
+                            {financeHouseState.makeList &&
+                              financeHouseState.makeList.length > 0 &&
+                              financeHouseState.makeList.map((model, idx) => (
+                                <option key={idx} value={idx}>
+                                  {model}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-sm">
+                        <div className="form-group">
+                          <label>Model:</label>
+                          <select
+                            className="form-control md"
+                            onChange={this.handleChangeModel}
+                          >
+                            <option value="0"></option>
+                            {financeHouseState.modelList &&
+                              financeHouseState.modelList.length > 0 &&
+                              financeHouseState.modelList.map((model, idx) => (
+                                <option key={idx} value={idx}>
+                                  {model}
+                                </option>
+                              ))}
+                          </select>
+                        </div>
+                      </div>
+                      <div className="col-sm">
+                        <div className="form-group">
+                          <label>Description:</label>
+                          <select
+                            className="form-control md"
+                            onChange={this.handleChangeDesc}
+                          >
+                            <option value="0"></option>
 
-                      {
-                        financeHouseState.descriptionList &&
-                          financeHouseState.descriptionList.length > 0 &&
-                          financeHouseState.descriptionList.map(
-                            (model, idx) => (
-                              <option key={idx} value={idx}>
-                                {model}
-                              </option>
-                            )
-                          )
-                        // : (
-                        //   <span>
-                        //     {financeHouseState.dealerSearchResults.message}
-                        //   </span>
-                        // )
-                      }
-                    </select>
+                            {
+                              financeHouseState.descriptionList &&
+                                financeHouseState.descriptionList.length > 0 &&
+                                financeHouseState.descriptionList.map(
+                                  (model, idx) => (
+                                    <option key={idx} value={idx}>
+                                      {model}
+                                    </option>
+                                  )
+                                )
+                              // : (
+                              //   <span>
+                              //     {financeHouseState.dealerSearchResults.message}
+                              //   </span>
+                              // )
+                            }
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <hr />
-            <section className="sections">
-              <div className="row">
-                <div className="col-md-5 subsections">
-                  <h5>Vehicle Details</h5>
+                  <hr />
                   <div className="row">
                     <div className="col-md vehicle-header">
                       <span>{this.state.makeValue}</span>
@@ -212,14 +210,14 @@ export class SampleForm extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-md-5 subsections">
-                  <h5>Search Dealer</h5>
+                <div className="col-md-4 subsections bg-new">
+                  <h6>Search Dealer</h6>
                   <div className="row m-4">
-                    <label>Find a Dealer nearby</label>
+                    <label>Find a Dealer</label>
                     <input
                       type="text"
                       onChange={this.handlePostCodeChange}
-                      placeholder="Enter Post code"
+                      placeholder="Enter Postcode"
                       className="form-control"
                     ></input>
                     <button

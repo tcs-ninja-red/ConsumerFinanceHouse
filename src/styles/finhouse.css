@@ -7,8 +7,10 @@
 }
 
 .form-group select {
-  width: 250px;
-  background-color: #d2e2f2;
+  width: 190px;
+  /* background-color: #d2e2f2; */
+  margin: 0px auto;
+  color: #003e52;
 }
 
 .vehicle-items {
@@ -24,12 +26,12 @@
 }
 
 .sections {
-  margin: 40px auto;
+  margin: 0px auto;
   background-color: #758aa2;
   box-shadow: 0 6px 2px -2px #000000;
 }
 
-.sections h5 {
+.sections h6 {
   /* text-align: center; */
   color: white;
   font-weight: bold;
@@ -37,23 +39,27 @@
   padding-bottom: 5px;
   padding-top: 10px;
   margin-top: -35px;
-  margin-left: -370px;
+  /* margin-left: -110px; */
 }
 
 .subsections {
   background-color: #d2e2f2; /*  #aaabb8; */
   /* color: white; */
-  margin: 20px auto;
+  margin: 30px auto;
   text-align: center;
   /*border: 5px #758AA2 solid;*/
   box-shadow: #464866 5px 5px;
   max-width: 30%;
-  height: 270px;
+  height: 380px;
   border-radius: 2%;
 }
 
 .subsections label {
   color: #003e52;
+}
+
+.bg-new {
+  background-color: #c2e2f2;
 }
 
 .dealer-list {
@@ -84,6 +90,11 @@
   border: 0.5px solid;
   margin-left: 10px;
   margin-right: 15px;
+}
+
+.subsections hr {
+  background-color: white;
+  border: solid 1px;
 }
 
 /*When screen size is smaller: clears floats and other alignments*/
