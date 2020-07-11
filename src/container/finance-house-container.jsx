@@ -1,14 +1,46 @@
-import React, { Component } from "react";
-export class FinanceHouseContainer extends Component {
-  render() {
-    const { onQuote, onForm } = this.props;
-    //console.log("in fin house");
-    return (
-      <React.Fragment>
-        <div></div>
-      </React.Fragment>
-    );
-  }
-}
+import { connect } from "react-redux";
+import { reduxForm } from "redux-form";
+import { FinanceHouseForm } from "../component/form/finance-house-form";
+import {
+  searchDealer,
+  getVehicleMakes,
+  getVehicleModels,
+  getVehicleDetails,
+  getVehicleDescriptions,
+} from "../actions/fin-house-actions";
+import * as Navigate from '../constants/routes-constant';
 
-export default FinanceHouseContainer;
+const FinanceHouseContainer = new reduxForm({
+  form: "sampleForm",
+})(FinanceHouseForm);
+
+FinanceHouseContainer.defaultProps = {};
+export const mapStateToProps = (state) => ({
+  financeHouseState: state.financeHouse,
+});
+
+export const mapDispatchToProps = (dispatch, ownProps) => ({
+
+  onQuote: () => {
+    ownProps.history.push(Navigate.TO_QUOTES);
+  },
+  searchDealer: (postcd) => {
+    //console.log("postcd", postcd);
+    dispatch(searchDealer(postcd));
+  },
+  getVehicleMakes: () => {
+    dispatch(getVehicleMakes());
+  },
+  getVehicleModels: (make) => {
+    dispatch(getVehicleModels(make));
+  },
+  getVehicleDetails: (make, model, description) => {
+    console.log("makes cont", make + model + description);
+    dispatch(getVehicleDetails(make, model, description));
+  },
+  getVehicleDescriptions: (make, model) => {
+    dispatch(getVehicleDescriptions(make, model));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(FinanceHouseContainer);

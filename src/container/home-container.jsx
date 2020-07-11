@@ -18,7 +18,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   onFinanceHouse: () => {
     //console.log(ownProps);
-    ownProps.history.push(Navigate.TO_FORM);
+    ownProps.history.push(Navigate.TO_FINHOUSE);
   },
   onHome: () => {
     ownProps.history.push(Navigate.TO_HOME);

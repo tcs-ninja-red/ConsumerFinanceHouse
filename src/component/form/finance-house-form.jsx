@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
-import { SampleField } from "./sample-field";
-import "../styles/finhouse.css";
+import { SampleField } from "../sample-field";
+import "../../styles/finhouse.css";
 
-export class SampleForm extends Component {
+export class FinanceHouseForm extends Component {
   constructor() {
     super();
     //set state properties
@@ -62,13 +62,18 @@ export class SampleForm extends Component {
 
   render() {
     console.log("fin house11");
-    const { postcode } = this.props;
+    const { postcode, onQuote } = this.props;
     const { financeHouseState } = this.props;
     //const { searchResults } = this.props.dealerSearchResult;
     console.log("fin22", financeHouseState);
     return (
       <React.Fragment>
-        <div className="form-body">
+        <div className="finance-container">
+          <a className="navbar-brand" href="#">
+            <img className="logo-small" src={require("../../assets/images/logo.png")} />
+          </a>
+          <span className="is-size-3">Choose your car</span>
+          <hr className="heading-divider" />
           <form>
             <section className="sections">
               <div className="row">
@@ -128,14 +133,14 @@ export class SampleForm extends Component {
 
                             {
                               financeHouseState.descriptionList &&
-                                financeHouseState.descriptionList.length > 0 &&
-                                financeHouseState.descriptionList.map(
-                                  (model, idx) => (
-                                    <option key={idx} value={idx}>
-                                      {model}
-                                    </option>
-                                  )
+                              financeHouseState.descriptionList.length > 0 &&
+                              financeHouseState.descriptionList.map(
+                                (model, idx) => (
+                                  <option key={idx} value={idx}>
+                                    {model}
+                                  </option>
                                 )
+                              )
                               // : (
                               //   <span>
                               //     {financeHouseState.dealerSearchResults.message}
@@ -161,51 +166,51 @@ export class SampleForm extends Component {
                         <label>Price(£): </label>
                         {/* <span> {this.state.priceVal}</span> */}
                         {financeHouseState.vehicleDetails &&
-                        financeHouseState.vehicleDetails.length > 0 ? (
-                          financeHouseState.vehicleDetails.map((model, idx) => (
-                            <span key={idx}>{model.cash_price}</span>
-                          ))
-                        ) : (
-                          <span>{""}</span>
-                        )}
+                          financeHouseState.vehicleDetails.length > 0 ? (
+                            financeHouseState.vehicleDetails.map((model, idx) => (
+                              <span key={idx}>{model.cash_price}</span>
+                            ))
+                          ) : (
+                            <span>{""}</span>
+                          )}
                       </div>
 
                       <div className="col-sm">
                         <label>Color: </label>
                         {financeHouseState.vehicleDetails &&
-                        financeHouseState.vehicleDetails.length > 0 ? (
-                          financeHouseState.vehicleDetails.map((model, idx) => (
-                            <span key={idx}>
-                              {model.color.toString().substring(0, 130)}
-                            </span>
-                          ))
-                        ) : (
-                          <span>{""}</span>
-                        )}
+                          financeHouseState.vehicleDetails.length > 0 ? (
+                            financeHouseState.vehicleDetails.map((model, idx) => (
+                              <span key={idx}>
+                                {model.color.toString().substring(0, 130)}
+                              </span>
+                            ))
+                          ) : (
+                            <span>{""}</span>
+                          )}
                       </div>
                     </div>
                     <div className="row vehicle-item">
                       <div className="col-sm">
                         <label>Transmission: </label>
                         {financeHouseState.vehicleDetails &&
-                        financeHouseState.vehicleDetails.length > 0 ? (
-                          financeHouseState.vehicleDetails.map((model, idx) => (
-                            <span key={idx}>{model.transmission}</span>
-                          ))
-                        ) : (
-                          <span>{""}</span>
-                        )}
+                          financeHouseState.vehicleDetails.length > 0 ? (
+                            financeHouseState.vehicleDetails.map((model, idx) => (
+                              <span key={idx}>{model.transmission}</span>
+                            ))
+                          ) : (
+                            <span>{""}</span>
+                          )}
                       </div>
                       <div className="col-sm">
                         <label>Body Style: </label>
                         {financeHouseState.vehicleDetails &&
-                        financeHouseState.vehicleDetails.length > 0 ? (
-                          financeHouseState.vehicleDetails.map((model, idx) => (
-                            <span key={idx}>{model.body_style}</span>
-                          ))
-                        ) : (
-                          <span>{""}</span>
-                        )}
+                          financeHouseState.vehicleDetails.length > 0 ? (
+                            financeHouseState.vehicleDetails.map((model, idx) => (
+                              <span key={idx}>{model.body_style}</span>
+                            ))
+                          ) : (
+                            <span>{""}</span>
+                          )}
                       </div>
                     </div>
                   </div>
@@ -232,33 +237,40 @@ export class SampleForm extends Component {
                   </div>
                   <div className="dealer-list">
                     {financeHouseState.dealerSearchResults &&
-                    financeHouseState.dealerSearchResults.length > 0 ? (
-                      financeHouseState.dealerSearchResults.map(
-                        (model, idx) => (
-                          //console.log(idx)
-                          <div className="row dealer-list-item" key={idx}>
-                            <a key={idx}>
-                              {model.dealer_name + ", " + model.town}
-                            </a>
-                          </div>
+                      financeHouseState.dealerSearchResults.length > 0 ? (
+                        financeHouseState.dealerSearchResults.map(
+                          (model, idx) => (
+                            //console.log(idx)
+                            <div className="row dealer-list-item" key={idx}>
+                              <a key={idx}>
+                                {model.dealer_name + ", " + model.town}
+                              </a>
+                            </div>
+                          )
                         )
-                      )
-                    ) : (
-                      <span>
-                        {financeHouseState.dealerSearchResults.message}
-                      </span>
-                    )}
+                      ) : (
+                        <span>
+                          {financeHouseState.dealerSearchResults.message}
+                        </span>
+                      )}
                   </div>
                 </div>
               </div>
             </section>
           </form>
+          <hr className="heading-divider" />
+          <br />
+          <div className="columns is-mobile">
+            <div className="column">
+              <button className="button is-primary is-medium" onClick={onQuote}>Proceed to quote</button>
+            </div>
+          </div>
         </div>
       </React.Fragment>
     );
   }
 }
 
-SampleForm.propTypes = {};
+FinanceHouseForm.propTypes = {};
 
-SampleForm.defaultProps = {};
+FinanceHouseForm.defaultProps = {};

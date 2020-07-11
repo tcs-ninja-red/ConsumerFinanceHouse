@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
-import { SampleForm } from "../component/sample-form";
+import { FinanceHouseForm } from "../component/form/finance-house-form";
 import {
   searchDealer,
   getVehicleMakes,
@@ -10,7 +10,7 @@ import {
 } from "../actions/fin-house-actions";
 const FormContainer = new reduxForm({
   form: "sampleForm",
-})(SampleForm);
+})(FinanceHouseForm);
 
 FormContainer.defaultProps = {};
 export const mapStateToProps = (state) => ({
