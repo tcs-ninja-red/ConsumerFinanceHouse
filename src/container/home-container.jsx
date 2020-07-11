@@ -1,24 +1,34 @@
-import React, { Component } from "react";
-export class HomeContainer extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <div>
-          {/* <Navbar click={this.props}></Navbar> */}
-          <div className="banner"></div>
-          <div className="slider-overlay">
-            <h1>Motor Finance that Fits Your Needs</h1>
-            <h4>Fast &amp; Online. Rates from 5.9% APR</h4>
-            <br />
-            {/* <a href="#" data-animation-in="lightSpeedIn">
-              APPLY NOW
-            </a> */}
-            <button className="button is-primary is-medium ">APPLY NOW</button>
-          </div>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
+import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
+import HomePageForm from '../component/form/home-form';
+import * as Navigate from '../constants/routes-constant';
 
-export default HomeContainer;
+
+const HomePageContainer = new reduxForm({
+  form: 'homepageform'
+})(HomePageForm);
+
+export const mapStateToProps = state => ({
+  fullState: state,
+});
+
+export const mapDispatchToProps = (dispatch, ownProps) => ({
+  onQuote: () => {
+    ownProps.history.push(Navigate.TO_QUOTES);
+  },
+  onFinanceHouse: () => {
+    //console.log(ownProps);
+    ownProps.history.push(Navigate.TO_FORM);
+  },
+  onHome: () => {
+    ownProps.history.push(Navigate.TO_HOME);
+  },
+  onDealerForm: () => {
+    ownProps.history.push(Navigate.TO_DEALER);
+  },
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(HomePageContainer);
