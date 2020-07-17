@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import { reduxForm } from "redux-form";
 import { connect } from 'react-redux';
+import { QuoteForm } from "../component/form/Quote-form";
+//import { getQuote } from "../actions/quotes-action";
 
+import {
+  getVehicleQuotes
+} from "../actions/quotes-action";
+
+const QuotesContainer = new reduxForm({
+  form: "QuoteForm",
+})(QuoteForm);
+
+/*
 export class QuotesContainer extends Component {
 
   render() {
@@ -127,7 +139,7 @@ export class QuotesContainer extends Component {
                   </div>
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="columns is-mobile">
                 <div className="column is-three-fifths is-offset-one-fifth">
                   <button className="button is-primary is-medium is-fullwidth">Apply for hire purchase</button>
@@ -255,7 +267,7 @@ export class QuotesContainer extends Component {
                       </div>
                 </div>
               </div>
-              <br/>
+              <br />
               <div className="columns is-mobile">
                 <div className="column is-three-fifths is-offset-one-fifth">
                   <button className="button is-primary is-medium is-fullwidth">Apply for personal contract purchase</button>
@@ -269,17 +281,20 @@ export class QuotesContainer extends Component {
     );
   }
 }
-
+*/
 QuotesContainer.propTypes = {
 };
 
 QuotesContainer.defaultProps = {
 };
-
-export const mapStateToProps = state => ({
+export const mapStateToProps = (state) => ({
+  QuoteState: state.quote,
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+  getVehicleQuotes: (input) => {
+    dispatch(getVehicleQuotes(input));
+  },
 });
 
 export default connect(
