@@ -1,3 +1,4 @@
+import React, { Component } from 'react';
 import { reduxForm } from "redux-form";
 import { connect } from 'react-redux';
 import { QuoteForm } from "../component/form/Quote-form";
