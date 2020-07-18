@@ -7,7 +7,7 @@ import FinanceHouseContainer from "../container/finance-house-container";
 import FormContainer from "../container/form-container";
 import HomeContainer from "../container/home-container";
 import DealerContainer from "../container/Dealer-container";
-import Navbar from "../component/navbar";
+import ProposalContainer from "../container/proposal-container";
 
 
 const Routes = (props) => (
@@ -46,6 +46,11 @@ const Routes = (props) => (
       exact
       path={Navigate.TO_DEALER}
       render={(routeProps) => <DealerContainer {...routeProps} />}
+    />
+    <Route
+      exact
+      path={Navigate.TO_PROPOSAL}
+      render={(routeProps) => <ProposalContainer {...routeProps} />}
     />
   </Switch>
 );

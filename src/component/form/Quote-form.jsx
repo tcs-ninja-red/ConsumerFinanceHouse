@@ -68,7 +68,7 @@ export class QuoteForm extends Component {
     render() {
         console.log("fin house11");
         //const { postcode } = this.props;
-        const { QuoteState } = this.props;
+        const { QuoteState, toProposal } = this.props;
         //const { financeHouseState } = this.props;
         //const { searchResults } = this.props.dealerSearchResult;
         console.log("fin22", QuoteState);
@@ -76,15 +76,10 @@ export class QuoteForm extends Component {
             <React.Fragment>
 
                 <div className="quotes-container">
-                    <div class="level">
-                        <div class="level-left">
-                            <div class="level-item">
-                                <p class="subtitle is-4">
-                                    <strong>Vehicle Financial Quote</strong>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <a className="navbar-brand" href="#">
+                        <img className="logo-small" src={require("../../assets/images/logo.png")} />
+                    </a>
+                    <span className="is-size-3">Choose your Quote</span>
                     <hr className="heading-divider" />
                     <div class="level">
 
@@ -383,7 +378,7 @@ export class QuoteForm extends Component {
                             <br />
                             <div className="columns is-mobile">
                                 <div className="column is-three-fifths is-offset-one-fifth">
-                                    <button className="button is-primary is-medium is-fullwidth">Apply for hire purchase</button>
+                                    <button className="button is-primary is-medium is-fullwidth" onClick={toProposal}>Apply for hire purchase</button>
                                 </div>
                             </div>
                         </div>
@@ -513,7 +508,7 @@ export class QuoteForm extends Component {
                             <br />
                             <div className="columns is-mobile">
                                 <div className="column is-three-fifths is-offset-one-fifth">
-                                    <button className="button is-primary is-medium is-fullwidth">Apply for personal contract purchase</button>
+                                    <button className="button is-primary is-medium is-fullwidth" onClick={toProposal}>Apply for personal contract purchase</button>
                                 </div>
                             </div>
                         </div>
