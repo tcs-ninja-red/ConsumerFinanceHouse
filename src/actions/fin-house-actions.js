@@ -30,7 +30,7 @@ export function searchDealer(postcode) {
   return function (dispatch) {
     //dispatch(requestPosts());
     console.log("postcode", postcode);
-    return fetch(`http://51.132.233.171/:44301/api/v1/dealers?postcode=${postcode}`)
+    return fetch(`http://51.132.233.171:44301/api/v1/dealers?postcode=${postcode}`)
       .then(
         (response) => response.json(),
         (error) => console.log("An error occurred.", error)
