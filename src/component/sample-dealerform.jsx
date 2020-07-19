@@ -112,7 +112,7 @@ export class SampledealerForm extends Component {
   }
 
   getModels(make) {
-    fetch("http://localhost:44301/api/v1/vehicles/makes")
+    fetch("http://51.132.233.171:44301/api/v1/vehicles/makes")
       .then((res) => res.json())
       .then(
         (result) => {
