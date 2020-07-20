@@ -57,34 +57,34 @@ export function getVehicleMakes() {
 ///Get Vehicle Quote
 export function getVehicleQuotes(Product, input2) {
     return function (dispatch) {
-        return fetch(`http://localhost:44301/api/v1/quotes`, {
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
+        return fetch(`http://51.132.233.171:44301/api/v1/quotes`, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify({
+                "financial": {
+                    "product": "HP",
+                    "cash_price": 25000,
+                    "deposit_amount": 2000,
+                    "term": 36
                 },
-                method: 'POST',
-                body: JSON.stringify({
-                    "financial": {
-                        "product": "HP",
-                        "cash_price": 25000,
-                        "deposit_amount": 2000,
-                        "term": 36
-                    },
-                    "max_annual_mileage": 6000,
-                    "vehicle": {
-                        "vehicle_mileage": 5000,
-                        "registration_month": 1,
-                        "registration_year": 2020,
-                        "make": "Ford",
-                        "model": "Focus",
-                        "description": "2019 model",
-                        "model_year": 2019,
-                        "vehicle_code": "vh01"
-                    },
-                    "dealer_id": ""
-                }),
+                "max_annual_mileage": 6000,
+                "vehicle": {
+                    "vehicle_mileage": 5000,
+                    "registration_month": 1,
+                    "registration_year": 2020,
+                    "make": "Ford",
+                    "model": "Focus",
+                    "description": "2019 model",
+                    "model_year": 2019,
+                    "vehicle_code": "vh01"
+                },
+                "dealer_id": ""
+            }),
 
-            })
+        })
             .then(
                 (response) => response.json(),
                 (error) => console.log("An error occurred.", error)

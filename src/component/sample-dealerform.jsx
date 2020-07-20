@@ -34,6 +34,9 @@ export class SampledealerForm extends Component {
     this.handleChangeDesc = this.handleChangeDesc.bind(this);
     this.handlePostCodeChange = this.handlePostCodeChange.bind(this);
   }
+
+     
+
   componentDidMount() {
     this.props.getVehicleMakes();
    
