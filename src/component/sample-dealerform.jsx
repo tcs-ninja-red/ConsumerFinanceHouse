@@ -7,50 +7,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "../styles/home.css";
 import { GridComponent, ColumnDirective, ColumnsDirective, Page, Inject, Filter, Group } from '@syncfusion/ej2-react-grids';
-import data from "../dataSource.json";
 
-
-///Sample data: todo- get it from API
-const vehicles = [
-  {
-    make_name: "Chevrolet",
-    model_name: "Aveo",
-    description: "Sports car",
-    cash_price: 500000.0,
-    color:
-      "Intense Black;",
-    transmission: "Manual",
-    fuel_type: "Petrol",
-    body_style: "Sedan",
-    model_year: 2006,
-    vehicle_mileage: 40000,
-    vehicle_id: "VH01",
-  },
-
-
-
-];
-
-//Todo--Get the values from API instead of static data
-var priceVal, colorVal, bodyTypeVal, fuelVal, transVal;
-
-function getModelDescFromMake(selectedMake, isModel) {
-  var modelLst = [];
-  var counter = 0;
-  var a = vehicles.forEach(function (item) {
-    counter++;
-    if (item.make_name == selectedMake) {
-      if (isModel) modelLst.push({ id: counter, value: item.model_name });
-      else modelLst.push({ id: counter, value: item.description });
-
-      priceVal = item.cash_price;
-      bodyTypeVal = item.body_style;
-      colorVal = item.color;
-      transVal = item.transmission;
-    }
-  });
-  return modelLst;
-}
 
 export class SampledealerForm extends Component {
   constructor() {
@@ -60,15 +17,16 @@ export class SampledealerForm extends Component {
       makeValue: "",
       modelValue: "",
       descValue: "",
-      priceVal: "",
-      bodyTypeVal: "",
-      colorVal: "",
-      transVal: "",
-      makeList: [], //getMakes(),
+      makeList: [],
       modelList: [],
       descList: [],
       postCode: "",
-    };
+          };
+             
+    
+   
+        
+    
 
     //bind Make onchange event
     this.handleChangeMake = this.handleChangeMake.bind(this);
@@ -77,68 +35,11 @@ export class SampledealerForm extends Component {
     this.handlePostCodeChange = this.handlePostCodeChange.bind(this);
   }
 
-  //get makes from API
-  getMakes() {
-    var makelLst = [];
-    var counter = 0;
-    var a = vehicles.forEach(function (item) {
-      counter++;
-      makelLst.push({ id: counter, value: item.make_name });
-    });
-    console.log("makelLst", makelLst);
-    this.setState({ makeList: makelLst });
-    // fetch("http://20.39.216.252:44301/api/v1/vehicles/makes")
-    //   .then((res) => res.json())
-    //   .then(
-    //     (result) => {
-    //       console.log(result);
-    //       var makeArr = [];
-    //       var counter = 0;
-    //       var a = result.forEach(function (item) {
-    //         counter++;
-    //         makeArr.push({ id: counter, value: item });
-    //       });
-    //       console.log(makeArr);
-    //       this.setState({
-    //         makeList: makeArr,
-    //       });
-    //     },
-    //     (error) => {
-    //       this.setState({
-    //         error,
-    //       });
-    //     }
-    //   );
-  }
+     
 
-  getModels(make) {
-    fetch("http://51.132.233.171:44301/api/v1/vehicles/makes")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          console.log(result);
-          var makeArr = [];
-          var counter = 0;
-          var a = result.forEach(function (item) {
-            counter++;
-            makeArr.push({ id: counter, value: item });
-          });
-          console.log(makeArr);
-          this.setState({
-            makeList: makeArr,
-          });
-        },
-        (error) => {
-          this.setState({
-            error,
-          });
-        }
-      );
-  }
-
-  ///API Call: currently not returning any lists..once it returns lists then bind with DDLs
   componentDidMount() {
-    this.getMakes();
+    this.props.getVehicleMakes();
+   
   }
 
   //make on-change event
@@ -147,12 +48,8 @@ export class SampledealerForm extends Component {
     var selectedMake = event.target[selectedIdx].text;
     this.setState({ makeValue: selectedMake });
 
-    console.log(getModelDescFromMake(selectedMake, "model_name"));
-    //set Model List options
-    this.setState({ modelList: getModelDescFromMake(selectedMake, true) });
-
-    //set Description List options: shouldn't be a DDL I guess
-    this.setState({ descList: getModelDescFromMake(selectedMake, false) });
+    this.props.getVehicleModels(selectedMake);
+   
   }
 
   handleChangeModel(event) {
@@ -160,29 +57,43 @@ export class SampledealerForm extends Component {
     var selectedModel = event.target[selectedIdx].text;
     this.setState({ modelValue: selectedModel });
     this.props.getVehicleDescriptions(this.state.makeValue, selectedModel);
+   
+    
   }
+
 
   handleChangeDesc(event) {
     var selectedIdx = event.target.selectedIndex;
     var selectedDesc = event.target[selectedIdx].text;
     this.setState({ descValue: selectedDesc });
-
-    this.setState({ priceVal: "£" + priceVal });
-    this.setState({ colorVal: colorVal });
-    this.setState({ bodyTypeVal: bodyTypeVal });
-    this.setState({ transVal: transVal });
+    this.props.getVehicleDetails(
+      this.state.makeValue,
+      this.state.modelValue,
+      selectedDesc
+    );
+     this.props.getVehicleDetails(
+      this.state.makeValue,
+      this.state.modelValue,
+      selectedDesc
+    );
+    
+     
   }
 
   handlePostCodeChange(event) {
     this.setState({ postCode: event.target.value });
+     
   }
+
 
   render() {
     console.log("fin house11");
-    const { postcode } = this.props;
+    const { onQuote } = this.props;
     const { financeHouseState } = this.props;
+    //this.gridInstance.dataSource = this.props
     //const { searchResults } = this.props.dealerSearchResult;
     console.log("fin22", financeHouseState);
+    
     return (
       <React.Fragment>
         <div className="form-body">
@@ -197,14 +108,19 @@ export class SampledealerForm extends Component {
                       className="form-control md"
                       onChange={this.handleChangeMake}
                     >
-                      <option className="dorpdowns" value="0">
-                        Select a Make
-                      </option>
-                      {this.state.makeList.map((make) => (
+                      <option className="dorpdowns" value="0"></option>
+                      {/* {this.state.makeList.map((make) => (
                         <option key={make.id} value={make.id}>
                           {make.value}
                         </option>
-                      ))}
+                      ))} */}
+                      {financeHouseState.makeList &&
+                        financeHouseState.makeList.length > 0 &&
+                        financeHouseState.makeList.map((model, idx) => (
+                          <option key={idx} value={idx}>
+                            {model}
+                          </option>
+                        ))}
                     </select>
                   </div>
                 </div>
@@ -215,13 +131,43 @@ export class SampledealerForm extends Component {
                       className="form-control md"
                       onChange={this.handleChangeModel}
                     >
-                      <option value="0">Select a Model</option>
-                      {this.state.modelList.map((model) => (
-                        <option key={model.id} value={model.id}>
-                          {model.value}
-                        </option>
-                      ))}
+                      <option value="0"></option>
+                      {financeHouseState.modelList &&
+                        financeHouseState.modelList.length > 0 &&
+                        financeHouseState.modelList.map((model, idx) => (
+                          <option key={idx} value={idx}>
+                            {model}
+                          </option>
+                        ))}
                     </select>
+                    </div>
+                    </div>
+                    <div className="col-sm">
+                  <div className="form-group">
+                    <label>Description:</label>
+                    <select
+                            className="form-control md"
+                            onChange={this.handleChangeDesc}
+                          >
+                            <option value="0"></option>
+
+                            {
+                              financeHouseState.descriptionList &&
+                              financeHouseState.descriptionList.length > 0 &&
+                              financeHouseState.descriptionList.map(
+                                (model, idx) => (
+                                  <option key={idx} value={idx}>
+                                    {model}
+                                  </option>
+                                )
+                              )
+                              // : (
+                              //   <span>
+                              //     {financeHouseState.dealerSearchResults.message}
+                              //   </span>
+                              // )
+                            }
+                          </select>
                   </div>
                 </div>
 
@@ -234,7 +180,8 @@ export class SampledealerForm extends Component {
               <h5>Vehicle Details</h5>
 
               <div >
-                <GridComponent dataSource={data}
+                <GridComponent ref={grid => this.gridInstance = grid}
+                  dataSource= {this.props.financeHouseState.vehicleDetails}
                   allowPaging={true}
                   pageSettings={{ pageSize: 2 }}
                   allowFiltering={true}
@@ -261,7 +208,13 @@ export class SampledealerForm extends Component {
 
 
           </form>
-
+         <hr className="heading-divider" />
+          <br />
+          <div className="columns is-mobile">
+            <div className="column">
+              <button className="button is-primary is-medium" onClick={onQuote}>Proceed to quote</button>
+            </div>
+          </div>
 
         </div>
       </React.Fragment>
