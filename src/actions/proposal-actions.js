@@ -24,7 +24,7 @@ export function generateProposal() {
     console.log("proposal action method");
     return function (dispatch) {
         return fetch(
-            `http://localhost:44301/api/v1/proposals`, {
+            `http://51.132.233.171:44301/api/v1/proposals`, {
             "method": "POST",
             "headers": {
                 "x-rapidapi-host": "fairestdb.p.rapidapi.com",
