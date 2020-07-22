@@ -8,7 +8,7 @@ import FormContainer from "../container/form-container";
 import HomeContainer from "../container/home-container";
 import DealerContainer from "../container/Dealer-container";
 import ProposalContainer from "../container/proposal-container";
-
+import ProposalDecisionContainer from "../container/proposal-decision-container";
 
 const Routes = (props) => (
   <Switch>
@@ -51,6 +51,11 @@ const Routes = (props) => (
       exact
       path={Navigate.TO_PROPOSAL}
       render={(routeProps) => <ProposalContainer {...routeProps} />}
+    />
+    <Route
+      exact
+      path={Navigate.TO_PROPOSAL_DECISION}
+      render={(routeProps) => <ProposalDecisionContainer {...routeProps} />}
     />
   </Switch>
 );
