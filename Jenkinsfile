@@ -21,17 +21,7 @@ pipeline {
             }
         }
         stage('Sonar Test') {
-             environment {
-                scannerHome = tool 'SonarQubeScanner'
-            }
-            steps {
-                withSonarQubeEnv('sonarqube') {
-                    sh "${scannerHome}/bin/sonar-scanner"
-                }
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-             }
+            sh "/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/sonarqubescanner/bin/sonar-scanner -Dsonar.host.url=http://51.132.233.171:9001 -Dsonar.projectName=ConsumerFinanceUI -Dsonar.projectVersion=1.0 -Dsonar.projectKey=ConsumerFinanceUI:app -Dsonar.sources=. -Dsonar.projectBaseDir=${WORKSPACE}"
         }
         stage('Build') {
             steps {
