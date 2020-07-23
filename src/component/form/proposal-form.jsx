@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Field } from "redux-form";
 import "../../styles/finhouse.css";
 import { TextField, Radio } from 'final-form-material-ui';
-//import { Checkbox, Select } from 'final-form-material-ui';
 import {
     Typography, Paper, Grid, Button, RadioGroup, InputLabel,
     FormLabel, FormControl, FormControlLabel, MenuItem, Select,
@@ -15,6 +14,33 @@ export class ProposalForm extends Component {
 
     constructor() {
         super();
+        this.state = {
+            title: null,
+            foreName: null,
+            middleName: null,
+            surName: null,
+            telephone: null,
+            email: null,
+            dob: null,
+            gender: null,
+            country: null,
+            maritalStatus: null,
+
+            postcode: null,
+            address: null,
+            yearsAtAddress: null,
+            monthsAtAddress: null,
+
+            occupation: null,
+            yearsAtEmployment: null,
+            monthsAtEmployment: null,
+            grossAnnualSalary: null,
+
+            accountName: null,
+            accountType: null,
+            sortCode: null,
+            accountNumber: null
+        }
     }
 
     handleSubmit = (event) => {
@@ -22,35 +48,43 @@ export class ProposalForm extends Component {
         const target = event.target;
 
         this.setState({
-            title: event.target.title.value,
-            foreName: event.target.foreName.value,
-            middleName: event.target.middleName.value,
-            surName: event.target.surName.value,
-            telephone: event.target.telephone.value,
-            email: event.target.email.value,
-            dob: event.target.dob.value,
-            gender: event.target.gender.value,
-            country: event.target.country.value,
-            maritalStatus: event.target.maritalStatus.value,
+            customer: [{
+                title: event.target.title.value,
+                foreName: event.target.foreName.value,
+                middleName: event.target.middleName.value,
+                surName: event.target.surName.value,
+                telephone: event.target.telephone.value,
+                email: event.target.email.value,
+                dob: event.target.dob.value,
+                gender: event.target.gender.value,
+                country: event.target.country.value,
+                maritalStatus: event.target.maritalStatus.value,
 
-            postcode: event.target.postcode.value,
-            address: event.target.address.value,
-            yearsAtAddress: event.target.yearsAtAddress.value,
-            monthsAtAddress: event.target.monthsAtAddress.value,
+                postcode: event.target.postcode.value,
+                address: event.target.address.value,
+                yearsAtAddress: event.target.yearsAtAddress.value,
+                monthsAtAddress: event.target.monthsAtAddress.value,
 
-            occupation: event.target.occupation.value,
-            yearsAtEmployment: event.target.yearsAtEmployment.value,
-            monthsAtEmployment: event.target.monthsAtEmployment.value,
-            grossAnnualSalary: event.target.grossAnnualSalary.value,
+                occupation: event.target.occupation.value,
+                yearsAtEmployment: event.target.yearsAtEmployment.value,
+                monthsAtEmployment: event.target.monthsAtEmployment.value,
+                grossAnnualSalary: event.target.grossAnnualSalary.value,
 
-            accountName: event.target.accountName.value,
-            accountType: event.target.accountType.value,
-            sortCode: event.target.sortCode.value,
-            accountNumber: event.target.accountNumber.value
+                accountName: event.target.accountName.value,
+                accountType: event.target.accountType.value,
+                sortCode: event.target.sortCode.value,
+                accountNumber: event.target.accountNumber.value
+            }]
         });
 
-        this.props.toProposal();
+        // console.log(this.state);
+        this.props.toProposal(this.state);
     }
+
+    handleChange = (e) => {
+        this.setState({ [e.target.name]: e.target.value });
+    }
+
 
     render() {
         const { fullState, vehicleDetails, toProposal } = this.props;
@@ -69,18 +103,24 @@ export class ProposalForm extends Component {
 
                     <form id="proposalForm" onSubmit={this.handleSubmit} className="quotes-container">
                         <div>
+                            {/* temp */}
+                            {/* <div style={{ textAlign: "right" }}>
+                                <a style={{ color: "blue" }} onClick={this.setDefaultValues} >Default Value For Testing</a>
+                            </div> */}
+
                             <Paper style={{ padding: 16 }}>
                                 <Typography variant="h5" component="h2" gutterBottom>
                                     Personal Details
                     </Typography>
                                 <Grid container alignItems="flex-start" spacing={2}>
                                     <Grid item xs={8}>
-                                        <InputLabel id="title">Title *</InputLabel>
+                                        <InputLabel style={{ marginTop: 16 }} id="title">Title *</InputLabel>
                                         <Select
                                             name="title"
                                             labelId="title"
                                             id="title"
-                                            required>
+                                            required
+                                            onChange={this.handleChange}>
                                             <MenuItem value={'Dr'}>Dr</MenuItem>
                                             <MenuItem value={'Mr'}>Mr</MenuItem>
                                             <MenuItem value={'Mrs'}>Mrs</MenuItem>
@@ -97,17 +137,19 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="ForeName"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
                                     <Grid item xs={8}>
                                         <Field
                                             fullWidth
-                                            required
+                                            // required
                                             name="middleName"
                                             component={TextField}
                                             type="text"
                                             label="Middle Name"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -119,6 +161,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="SurName"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -130,6 +173,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Telephone"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -141,6 +185,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="email"
                                             label="Email"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -152,16 +197,18 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Date Of Birth"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
                                     <Grid item xs={8}>
-                                        <InputLabel id="gender">Gender *</InputLabel>
+                                        <InputLabel id="gender" style={{ marginTop: 16 }} >Gender *</InputLabel>
                                         <Select
                                             name="gender"
                                             labelId="gender"
                                             id="gender"
-                                            required>
+                                            required
+                                            onChange={this.handleChange}>
                                             <MenuItem value={'M'}>Male</MenuItem>
                                             <MenuItem value={'F'}>Female</MenuItem>
                                         </Select>
@@ -175,16 +222,18 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Country of Origin"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
                                     <Grid item xs={8}>
-                                        <InputLabel id="maritalStatus">Marital Status *</InputLabel>
+                                        <InputLabel style={{ marginTop: 16 }} id="maritalStatus">Marital Status *</InputLabel>
                                         <Select
                                             name="maritalStatus"
                                             labelId="maritalStatus"
                                             id="maritalStatus"
-                                            required>
+                                            required
+                                            onChange={this.handleChange}>
                                             <MenuItem value={'D'}>Divorced</MenuItem>
                                             <MenuItem value={'M'}>Married</MenuItem>
                                             <MenuItem value={'S'}>Single</MenuItem>
@@ -207,6 +256,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Postcode"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
                                     <Grid item xs={8}>
@@ -217,6 +267,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Address"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -228,6 +279,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Years At Address"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -238,6 +290,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Months At Address"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
                                 </Grid>
@@ -258,6 +311,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Occupation"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -269,6 +323,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Years At Employment"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -279,6 +334,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Months At Employment"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -290,6 +346,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Gross Annual Salary"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -311,6 +368,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Account Name"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -322,6 +380,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="text"
                                             label="Account Type"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -333,6 +392,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Sort Code"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 
@@ -344,6 +404,7 @@ export class ProposalForm extends Component {
                                             component={TextField}
                                             type="number"
                                             label="Account Number"
+                                            onChange={this.handleChange}
                                         />
                                     </Grid>
 

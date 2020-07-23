@@ -29,13 +29,16 @@ export class ProposalDecisionForm extends Component {
 
                     <div style={{ marginTop: 0 }} className="quotes-container">
                         <Paper>
-                            <Typography className="quotes-container" variant="h5" component="h2">
-                                Success:  {proposalSuccess}
-                            </Typography>
+                            {proposalSuccess && <Typography className="quotes-container" variant="h5" component="h2">
+                                Decision:  {proposalSuccess}
+                            </Typography>}
                             {proposalFail && <Typography className="quotes-container" variant="h5" component="h2">
-                                {proposalSuccess}
-                        Fail:
-                    </Typography>}
+                                Fail:  {proposalFail}
+                            </Typography>}
+                            {!proposalSuccess && !proposalFail && <Typography className="quotes-container" variant="h5" component="h2">
+                                Something went wrong! Please try again after sometime!  {proposalFail}
+                            </Typography>}
+
                         </Paper>
 
                     </div>
