@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     tools {nodejs "node"}
-    
+
       stages {
         stage('Checkout') {
             steps {
@@ -25,6 +25,7 @@ pipeline {
         }
         stage('Sonar Test') {
             steps {
+            sh "export PATH=`$PATH:/var/jenkins_home/tools/jenkins.plugins.nodejs.tools.NodeJSInstallation/node/bin/`"
             sh "/var/jenkins_home/tools/hudson.plugins.sonar.SonarRunnerInstallation/SonarQubeScanner/bin/sonar-scanner -Dsonar.host.url=http://51.132.233.171:9001 -Dsonar.projectName=ConsumerFinanceUI -Dsonar.projectVersion=1.0 -Dsonar.projectKey=ConsumerFinanceUI:app -Dsonar.sources=. -Dsonar.projectBaseDir=${WORKSPACE}"
             }
         }
