@@ -88,12 +88,12 @@ export class QuoteForm extends Component {
     return (
       <React.Fragment>
         <div className="quotes-container">
-          <a className="navbar-brand" href="#">
+          {/* <a className="navbar-brand" href="#">
             <img
               className="logo-small"
               src={require("../../assets/images/logo.png")}
             />
-          </a>
+          </a> */}
           <span className="is-size-3">Choose your Quote</span>
           <hr className="heading-divider" />
           <div className="level">
