@@ -1,7 +1,7 @@
 .finance-container {
   margin: 0px auto;
   font-weight: bold;
-  padding: 50px;
+  padding: 100px 5px 5px 5px;
 }
 
 .logo-small {
@@ -35,37 +35,26 @@
 .sections {
   margin: 0px auto;
   width: 100%;
-  padding: 50px;
-}
-
-.sections h6 {
-  /* text-align: center; */
-  color: white;
-  font-weight: bold;
-  text-transform: uppercase;
-  padding-bottom: 5px;
-  padding-top: 10px;
-  margin-top: -35px;
-  /* margin-left: -110px; */
 }
 
 .subsections {
-  background-color: #d2e2f2; /*  #aaabb8; */
+  background-color: #eeeeee; /*  #aaabb8; */
   /* color: white; */
-  margin: 30px auto;
+  margin: 10px auto;
   text-align: center;
   /*border: 5px #758AA2 solid;*/
-  box-shadow: #464866 5px 5px;
-  height: 380px;
-  border-radius: 2%;
+  box-shadow: #464866 3px 3px;
+  min-height: 80vh;
+  height: 100%;
 }
 
 .subsections label {
   color: #003e52;
+  padding-top: 10px;
 }
 
 .bg-new {
-  background-color: #c2e2f2;
+  background-color: #deeeee;
 }
 
 .dealer-list {

@@ -1,6 +1,37 @@
 .logo {
-  width: 200px;
-  height: 130px;
+  width: 150px;
+  height: 100px;
+}
+
+.logo-wrapper {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.logo-text-top {
+  margin-top: -25%;
+  padding-left: 8px;
+}
+
+.nav-top {
+  position: absolute;
+  width: 99%;
+  color: #00b89c;
+  /* color: white; */
+  padding: 0 20px;
+  font-weight: 450;
+  text-transform: uppercase;
+  margin-bottom: 150px;
+}
+
+.level-right .level-item a {
+  padding: 5px;
+  text-decoration: none;
+  color: #00b89c;
+}
+
+.level-right .level-item a:hover {
+  color: silver;
 }
 
 /* .nav-bg-custom {
@@ -14,6 +45,12 @@
   background-repeat: no-repeat;
   height: 100vh;
   background-size: cover;
+
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 .home-container .menu a {
   color: white;
@@ -28,12 +65,20 @@
   padding: 50px;
 }
 
-.home-body {
+/* .home-body {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 100vh;
+} */
+.home-body {
+  /* position: absolute; */
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
 }
 
 .dealerbanner {
@@ -47,7 +92,8 @@
 }
 
 .site-name {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   font-weight: bold;
   font-size: larger;
   color: #00d1b2; /*#ec7063;*/ /* #088da5;*/

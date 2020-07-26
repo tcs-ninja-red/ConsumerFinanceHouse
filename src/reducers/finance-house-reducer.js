@@ -11,6 +11,7 @@ const initialState = {
   makeList: "",
   modelList: "",
   descriptionList: "",
+  vehicleDetails: ""
 };
 
 const financeHouse = (state = initialState, action) => {

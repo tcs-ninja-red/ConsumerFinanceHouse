@@ -30,7 +30,7 @@ export function searchDealer(postcode) {
   return function (dispatch) {
     //dispatch(requestPosts());
     console.log("postcode", postcode);
-    return fetch(`http://localhost:44301/api/v1/dealers?postcode=${postcode}`)
+    return fetch(`http://51.132.233.171:44301/api/v1/dealers?postcode=${postcode}`)
       .then(
         (response) => response.json(),
         (error) => console.log("An error occurred.", error)
@@ -45,7 +45,7 @@ export function searchDealer(postcode) {
 ///Get Vehicle Make
 export function getVehicleMakes() {
   return function (dispatch) {
-    return fetch(`http://localhost:44301/api/v1/vehicles/makes`)
+    return fetch(`http://51.132.233.171:44301/api/v1/vehicles/makes`)
       .then(
         (response) => response.json(),
         (error) => console.log("An error occurred.", error)
@@ -60,7 +60,7 @@ export function getVehicleMakes() {
 ///Get Vehicle Models
 export function getVehicleModels(make) {
   return function (dispatch) {
-    return fetch(`http://localhost:44301/api/v1/vehicles/makes/${make}/models`)
+    return fetch(`http://51.132.233.171:44301/api/v1/vehicles/makes/${make}/models`)
       .then(
         (response) => response.json(),
         (error) => console.log("An error occurred.", error)
@@ -76,7 +76,7 @@ export function getVehicleModels(make) {
 export function getVehicleDescriptions(make, model) {
   return function (dispatch) {
     return fetch(
-      `http://localhost:44301/api/v1/vehicles/makes/${make}/models/${model}/descriptions`
+      `http://51.132.233.171:44301/api/v1/vehicles/makes/${make}/models/${model}/descriptions`
     )
       .then(
         (response) => response.json(),
@@ -93,7 +93,7 @@ export function getVehicleDescriptions(make, model) {
 export function getVehicleDetails(make, model, description) {
   return function (dispatch) {
     return fetch(
-      `http://localhost:44301/api/v1/vehicles?make_name=${make}&model_name=${model}&description=${description}`
+      `http://51.132.233.171:44301/api/v1/vehicles?make_name=${make}&model_name=${model}&description=${description}`
     )
       .then(
         (response) => response.json(),

@@ -5,8 +5,10 @@ import {
   searchDealer,
   getVehicleMakes,
   getVehicleModels,
+  getVehicleDetails,
   getVehicleDescriptions,
 } from "../actions/fin-house-actions";
+import * as Navigate from '../constants/routes-constant'
 const DealerContainer = new reduxForm({
   form: "sampledealerForm",
 })(SampledealerForm);
@@ -29,6 +31,9 @@ export const mapStateToProps = (state) => ({
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
+  onQuote: () => {
+    ownProps.history.push(Navigate.TO_QUOTES);
+  },
   searchDealer: (postcd) => {
     //console.log("postcd", postcd);
     dispatch(searchDealer(postcd));
@@ -38,6 +43,10 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
   },
   getVehicleModels: (make) => {
     dispatch(getVehicleModels(make));
+  },
+  getVehicleDetails: (make, model, description) => {
+    console.log("makes cont", make + model + description);
+    dispatch(getVehicleDetails(make, model, description));
   },
   getVehicleDescriptions: (make, model) => {
     console.log("makemodel", model);
