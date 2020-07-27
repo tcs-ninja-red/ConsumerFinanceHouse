@@ -11,7 +11,7 @@ export class ProposalDecisionForm extends Component {
     }
 
     render() {
-        const { proposalSuccess, proposalFail, vehicleDetails } = this.props;
+        const { proposalSuccess, proposalFail, vehicleDetails, proposalStatus } = this.props;
 
         return (
             <React.Fragment>
@@ -29,6 +29,9 @@ export class ProposalDecisionForm extends Component {
 
                     <div style={{ marginTop: 0 }} className="quotes-container">
                         <Paper>
+                            {proposalStatus && <Typography className="quotes-container" variant="h5" component="h2">
+                                Something went wrong! Please try again after sometime!
+                            </Typography>}
                             {proposalSuccess && <Typography className="quotes-container" variant="h5" component="h2">
                                 Decision:  {proposalSuccess}
                             </Typography>}

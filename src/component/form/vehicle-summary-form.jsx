@@ -51,7 +51,7 @@ export class VehicleSummaryForm extends Component {
                                             </div>
                                             <div className="column">
                                                 <strong>Transmission : </strong>
-                                                <span> {this.props.transmission} </span>
+                                                <span> {this.props.vehicle.transmission} </span>
                                             </div>
                                             <div className="column">
                                                 <strong>Body Style : </strong>
