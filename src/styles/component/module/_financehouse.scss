@@ -1,5 +1,17 @@
 .finance-container {
-    margin: 50px;
+    .title-bar {
+        padding: 25px 50px;
+        background-color: #00d1b2;
+        color: white;
+    }
+
+    .finance-content {
+        margin: 50px 200px;
+        ul {
+            list-style: disc;
+            margin-left: 30px;
+        }
+    }
 }
 
 .logo-small {

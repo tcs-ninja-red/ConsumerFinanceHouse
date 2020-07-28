@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Alert from '../elements/alert'
 
 export class FinanceHouseForm extends Component {
   constructor() {
@@ -66,13 +67,17 @@ export class FinanceHouseForm extends Component {
     return (
       <React.Fragment>
         <div className="finance-container">
-          <a className="navbar-brand" href="#">
-            <img className="logo-small" src={require("../../assets/images/logo.png")} />
-          </a>
-          <span className="is-size-4">Choose your Car</span>
+          <div className="title-bar">
+            <a className="navbar-brand" href="#">
+              <img className="logo-small" src={require("../../assets/images/logo.png")} />
+            </a>
+            <span className="is-size-4">Choose your Car</span>
+          </div>
+          <div className="finance-content">
+            <Alert />
+          </div>
           <form>
             <section className="sections">
-              <hr className="heading-divider" />
               <div className="row">
                 <div className="col-md-7 subsections">
                   <div className="container">
