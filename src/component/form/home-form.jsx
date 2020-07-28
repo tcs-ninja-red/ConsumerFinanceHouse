@@ -36,7 +36,7 @@ export class HomePageForm extends Component {
               <div className="columns is-mobile ">
                 <div className="column is-three-fifths is-offset-one-fifth has-text-centered">
                   <p className="is-size-3">
-                    Motor Finance that Fits your Needs
+                    Choose your perfect car by comparing our car finance plan
                   </p>
                   <br />
                   <p className="is-size-6">

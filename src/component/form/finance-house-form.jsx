@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Alert from '../elements/alert'
+import { Field } from 'redux-form';
+import { InputSelect } from '../elements/input-select';
+import { InputField } from '../elements/input-field';
 
 export class FinanceHouseForm extends Component {
   constructor() {
@@ -71,88 +74,204 @@ export class FinanceHouseForm extends Component {
             <a className="navbar-brand" href="#">
               <img className="logo-small" src={require("../../assets/images/logo.png")} />
             </a>
-            <span className="is-size-4">Choose your Car</span>
+            <span className="is-size-3 has-text-weight-medium">Choose your Car</span>
           </div>
           <div className="finance-content">
             <Alert />
+            <br />
+
+            <form>
+              <span className="is-size-4 has-text-weight-medium">Let's get started with your choice of car</span>
+              <hr className="heading-divider" />
+              <br />
+              <div className="finance-content-form">
+                <Field name="carType"
+                  component={InputSelect}
+                  label="Car make"
+                  labelWidth={110}
+                  onChange={this.handleChangeMake}
+                  helperText="Pleae chose one of the car make"
+                >
+                  <option value="" />
+                  {financeHouseState.makeList &&
+                    financeHouseState.makeList.length > 0 &&
+                    financeHouseState.makeList.map((model, idx) => (
+                      <option key={idx} value={idx}>
+                        {model}
+                      </option>
+                    ))}
+                </Field>
+                <br />
+                <Field
+                  name="carModel"
+                  component={InputSelect}
+                  label="Car model"
+                  labelWidth={110}
+                  onChange={this.handleChangeModel}
+                  helperText="Pleae chose one of the car model"
+                >
+                  <option value="" />
+                  {financeHouseState.modelList &&
+                    financeHouseState.modelList.length > 0 &&
+                    financeHouseState.modelList.map((model, idx) => (
+                      <option key={idx} value={idx}>
+                        {model}
+                      </option>
+                    ))}
+                </Field>
+                <br />
+                <Field
+                  name="carSegment"
+                  component={InputSelect}
+                  label="Car segment"
+                  labelWidth={110}
+                  onChange={this.handleChangeDesc}
+                  helperText="Pleae chose one of the car segment"
+                >
+                  <option value="" />
+                  {
+                    financeHouseState.descriptionList &&
+                    financeHouseState.descriptionList.length > 0 &&
+                    financeHouseState.descriptionList.map(
+                      (model, idx) => (
+                        <option key={idx} value={idx}>
+                          {model}
+                        </option>
+                      )
+                    )
+                  }
+                </Field>
+                <br />
+                <Field
+                  name="carColor"
+                  component={InputSelect}
+                  label="Car color"
+                  labelWidth={110}
+                  helperText="Pleae chose one of the car color"
+                >
+                  <option value="" />
+                  {financeHouseState.vehicleDetails &&
+                    financeHouseState.vehicleDetails.length > 0 && (
+                      financeHouseState.vehicleDetails[0].color.map((color, idx) => (
+
+                        <option key={idx} value={idx}>
+                          {color}
+                        </option>
+                      ))
+                    )}
+                </Field>
+                <br />
+                <Field
+                  component={InputField}
+                  labelWidth={175}
+                  onChange={this.handlePostCodeChange}
+                  name='findDealer'
+                  label='Find your nearest dealer'
+                  helperText="Please enter your nearest post code"
+                />
+              </div>
+              <br />
+              <hr className="heading-divider" />
+              <div className="columns is-mobile">
+                <div className="column">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      this.props.searchDealer(this.state.postCode)
+                    }
+                    className="button is-primary is-medium"
+                  >
+                    Find your best dealer
+                    </button>
+                </div>
+              </div>
+            </form>
+            <br />
+            <br />
+            <span className="is-size-4 has-text-weight-medium">Your options</span>
+            <br />
+            <br />
+            <div class="box">
+              <div class="columns">
+                <div class="column is-one-quarter">
+                  <img className="logo-mall" src={require("../../assets/images/Chevrolet-logo.png")} />
+                </div>
+                <div class="column">
+                  <span className="plan-header is-size-4 has-text-weight-medium">Chevrolet - Aveo - Medium car 1.4</span>
+                  <ul>
+                    <li>Manual</li>
+                    <li>Petrol</li>
+                    <li>Sedan</li>
+                    <li>Black</li>
+                  </ul>
+                  <div className="is-size-6">Vehicle cost : £60,000.00</div>
+                  <br />
+                  <div className="is-size-6">Located in Cowbridge, South Glamorgan</div>
+                </div>
+                <div class="column is-one-quarter">
+                  <div className="columns is-mobile">
+                    <div className="column">
+                      <div className="is-size-6">Finance option from</div>
+                      <div className="is-size-3 has-text-weight-bold">£584.76</div>
+                      <div className="is-size-6">per month</div>
+                      <div className="is-size-3 has-text-weight-bold">6.9% APR</div>
+                      <br />
+                      <div className="columns is-mobile">
+                        <div className="column">
+                          <button className="button is-primary is-medium" onClick={onQuote}>
+                            Proceed to Quote
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="box">
+              <div class="columns">
+                <div class="column is-one-quarter">
+                  <img className="logo-mall" src={require("../../assets/images/Chevrolet-logo.png")} />
+                </div>
+                <div class="column">
+                  <span className="plan-header is-size-4 has-text-weight-medium">Chevrolet - Aveo - Medium car 1.4</span>
+                  <ul>
+                    <li>Manual</li>
+                    <li>Petrol</li>
+                    <li>Sedan</li>
+                    <li>Black</li>
+                  </ul>
+                  <div className="is-size-6">Vehicle cost : £60,000.00</div>
+                  <br />
+                  <div className="is-size-6">Located in Mitcham, Surrey</div>
+                </div>
+                <div class="column is-one-quarter">
+                  <div className="columns is-mobile">
+                    <div className="column">
+                      <div className="is-size-6">Finance option from</div>
+                      <div className="is-size-3 has-text-weight-bold">£884.76</div>
+                      <div className="is-size-6">per month</div>
+                      <div className="is-size-3 has-text-weight-bold">5.6% APR</div>
+                      <br />
+                      <div className="columns is-mobile">
+                        <div className="column is-full">
+                          <button className="button is-primary is-medium" onClick={onQuote}>
+                            Proceed to Quote
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
           <form>
             <section className="sections">
               <div className="row">
                 <div className="col-md-7 subsections">
-                  <div className="container">
-                    <div className="row">
-                      <div className="col-sm">
-                        <div className="form-group">
-                          <label>Make:</label>
-                          <select
-                            className="form-control md"
-                            onChange={this.handleChangeMake}
-                          >
-                            <option className="dorpdowns" value="0"></option>
-                            {/* {this.state.makeList.map((make) => (
-                        <option key={make.id} value={make.id}>
-                          {make.value}
-                        </option>
-                      ))} */}
-                            {financeHouseState.makeList &&
-                              financeHouseState.makeList.length > 0 &&
-                              financeHouseState.makeList.map((model, idx) => (
-                                <option key={idx} value={idx}>
-                                  {model}
-                                </option>
-                              ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-sm">
-                        <div className="form-group">
-                          <label>Model:</label>
-                          <select
-                            className="form-control md"
-                            onChange={this.handleChangeModel}
-                          >
-                            <option value="0"></option>
-                            {financeHouseState.modelList &&
-                              financeHouseState.modelList.length > 0 &&
-                              financeHouseState.modelList.map((model, idx) => (
-                                <option key={idx} value={idx}>
-                                  {model}
-                                </option>
-                              ))}
-                          </select>
-                        </div>
-                      </div>
-                      <div className="col-sm">
-                        <div className="form-group">
-                          <label>Description:</label>
-                          <select
-                            className="form-control md"
-                            onChange={this.handleChangeDesc}
-                          >
-                            <option value="0"></option>
-
-                            {
-                              financeHouseState.descriptionList &&
-                              financeHouseState.descriptionList.length > 0 &&
-                              financeHouseState.descriptionList.map(
-                                (model, idx) => (
-                                  <option key={idx} value={idx}>
-                                    {model}
-                                  </option>
-                                )
-                              )
-                              // : (
-                              //   <span>
-                              //     {financeHouseState.dealerSearchResults.message}
-                              //   </span>
-                              // )
-                            }
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <hr />
                   <div className="row">
                     <div className="col-md vehicle-header">
@@ -221,7 +340,6 @@ export class FinanceHouseForm extends Component {
                     <label>Find a Dealer</label>
                     <input
                       type="text"
-                      onChange={this.handlePostCodeChange}
                       placeholder="Enter Postcode"
                       className="form-control"
                     ></input>

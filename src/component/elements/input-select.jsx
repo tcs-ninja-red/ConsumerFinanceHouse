@@ -37,6 +37,7 @@ export const InputSelect = ({
 	labelWidth,
 	variant,
 	input,
+	helperText,
 	meta: { touched, invalid, error },
 	...custom
 }) => {
@@ -61,6 +62,11 @@ export const InputSelect = ({
 							{children}
 						</Select>
 					</ThemeProvider>
+					{helperText &&
+						<FormHelperText id="outlined-weight-helper-text">
+							{helperText}
+						</FormHelperText>
+					}
 					{touched &&
 						error && (
 							<FormHelperText eårror id="outlined-weight-helper-text">
