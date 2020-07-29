@@ -204,17 +204,15 @@ export class FinanceHouseForm extends Component {
                     <li>Sedan</li>
                     <li>Black</li>
                   </ul>
-                  <div className="is-size-6">Vehicle cost : £60,000.00</div>
-                  <br />
-                  <div className="is-size-6">Located in Cowbridge, South Glamorgan</div>
                 </div>
                 <div class="column is-one-quarter">
                   <div className="columns is-mobile">
                     <div className="column">
-                      <div className="is-size-6">Finance option from</div>
-                      <div className="is-size-3 has-text-weight-bold">£584.76</div>
-                      <div className="is-size-6">per month</div>
                       <div className="is-size-3 has-text-weight-bold">6.9% APR</div>
+                      <br />
+                      <div className="is-size-6">Vehicle cost : £60,000.00</div>
+                      <br />
+                      <div className="is-size-6">Located in Cowbridge, South Glamorgan</div>
                       <br />
                       <div className="columns is-mobile">
                         <div className="column">
@@ -242,17 +240,15 @@ export class FinanceHouseForm extends Component {
                     <li>Sedan</li>
                     <li>Black</li>
                   </ul>
-                  <div className="is-size-6">Vehicle cost : £60,000.00</div>
-                  <br />
-                  <div className="is-size-6">Located in Mitcham, Surrey</div>
                 </div>
                 <div class="column is-one-quarter">
                   <div className="columns is-mobile">
                     <div className="column">
-                      <div className="is-size-6">Finance option from</div>
-                      <div className="is-size-3 has-text-weight-bold">£884.76</div>
-                      <div className="is-size-6">per month</div>
                       <div className="is-size-3 has-text-weight-bold">5.6% APR</div>
+                      <br />
+                      <div className="is-size-6">Vehicle cost : £60,000.00</div>
+                      <br />
+                      <div className="is-size-6">Located in Mitcham, Surrey</div>
                       <br />
                       <div className="columns is-mobile">
                         <div className="column is-full">
@@ -267,123 +263,16 @@ export class FinanceHouseForm extends Component {
               </div>
             </div>
 
-          </div>
-          <form>
-            <section className="sections">
-              <div className="row">
-                <div className="col-md-7 subsections">
-                  <hr />
-                  <div className="row">
-                    <div className="col-md vehicle-header">
-                      <span>{this.state.makeValue}</span>
-                      <span>{this.state.modelValue}</span>
-                      <span>{this.state.descValue}</span>
-                    </div>
-                  </div>
-                  <div className="vehicle-items">
-                    <div className="row vehicle-item">
-                      <div className="col-sm">
-                        <label>Price(£): </label>
-                        {/* <span> {this.state.priceVal}</span> */}
-                        {financeHouseState.vehicleDetails &&
-                          financeHouseState.vehicleDetails.length > 0 ? (
-                            financeHouseState.vehicleDetails.map((model, idx) => (
-                              <span key={idx}>{model.cash_price}</span>
-                            ))
-                          ) : (
-                            <span>{""}</span>
-                          )}
-                      </div>
-
-                      <div className="col-sm">
-                        <label>Color: </label>
-                        {financeHouseState.vehicleDetails &&
-                          financeHouseState.vehicleDetails.length > 0 ? (
-                            financeHouseState.vehicleDetails.map((model, idx) => (
-                              <span key={idx}>
-                                {model.color.toString().substring(0, 130)}
-                              </span>
-                            ))
-                          ) : (
-                            <span>{""}</span>
-                          )}
-                      </div>
-                    </div>
-                    <div className="row vehicle-item">
-                      <div className="col-sm">
-                        <label>Transmission: </label>
-                        {financeHouseState.vehicleDetails &&
-                          financeHouseState.vehicleDetails.length > 0 ? (
-                            financeHouseState.vehicleDetails.map((model, idx) => (
-                              <span key={idx}>{model.transmission}</span>
-                            ))
-                          ) : (
-                            <span>{""}</span>
-                          )}
-                      </div>
-                      <div className="col-sm">
-                        <label>Body Style: </label>
-                        {financeHouseState.vehicleDetails &&
-                          financeHouseState.vehicleDetails.length > 0 ? (
-                            financeHouseState.vehicleDetails.map((model, idx) => (
-                              <span key={idx}>{model.body_style}</span>
-                            ))
-                          ) : (
-                            <span>{""}</span>
-                          )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4 subsections bg-new">
-                  <div className="row m-4">
-                    <label>Find a Dealer</label>
-                    <input
-                      type="text"
-                      placeholder="Enter Postcode"
-                      className="form-control"
-                    ></input>
-                    <button
-                      type="button"
-                      onClick={() =>
-                        this.props.searchDealer(this.state.postCode)
-                      }
-                      className="button is-primary is-small"
-                    >
-                      Search
-                    </button>
-                  </div>
-                  <div className="dealer-list">
-                    {financeHouseState.dealerSearchResults &&
-                      financeHouseState.dealerSearchResults.length > 0 ? (
-                        financeHouseState.dealerSearchResults.map(
-                          (model, idx) => (
-                            //console.log(idx)
-                            <div className="row dealer-list-item" key={idx}>
-                              <a key={idx}>
-                                {model.dealer_name + ", " + model.town}
-                              </a>
-                            </div>
-                          )
-                        )
-                      ) : (
-                        <span>
-                          {financeHouseState.dealerSearchResults.message}
-                        </span>
-                      )}
-                  </div>
-                </div>
-              </div>
-            </section>
-          </form>
-          <hr className="heading-divider" />
-          <br />
-          <div className="columns is-mobile">
-            <div className="column">
-              <button className="button is-primary is-medium" onClick={onQuote}>
-                Proceed to Quote
+            <hr className="heading-divider" />
+            <br />
+            <div className="columns is-mobile">
+              <div className="column">
+                <button className="button is-primary is-medium" onClick={onQuote}>
+                  Proceed to Quote
               </button>
+              </div>
             </div>
+
           </div>
         </div>
       </React.Fragment>
