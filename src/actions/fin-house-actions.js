@@ -2,6 +2,7 @@ export const GET_MAKE = "GET_MAKE";
 export const GET_MODEL = "GET_MODEL";
 export const GET_DESC = "GET_DESC";
 export const GET_VEH = "GET_VEH";
+export const GET_ALLVEH = "GET_ALLVEH";
 export const SEARCH_DEALERS = "SEARCH_DEALERS";
 
 export const getMake = (json) => ({
@@ -18,6 +19,10 @@ export const getDescription = (json) => ({
 });
 export const getVehicle = (json) => ({
   type: GET_VEH,
+  json: json,
+});
+export const getAllVehicle = (json) => ({
+  type: GET_ALLVEH,
   json: json,
 });
 export const searchResults = (json) => ({
@@ -102,6 +107,22 @@ export function getVehicleDetails(make, model, description) {
       .then((json) => {
         //console.log("responseVeh", json);
         dispatch(getVehicle(json));
+      });
+  };
+}
+
+export function getAllVehicleDetails(make, model) {
+  return function (dispatch) {
+    return fetch(
+      `http://51.132.233.171:44301/api/v1/vehicles?make_name=${make}&model_name=${model}`
+    )
+      .then(
+        (response) => response.json(),
+        (error) => console.log("An error occurred.", error)
+      )
+      .then((json) => {
+        //console.log("responseVeh", json);
+        dispatch(getAllVehicle(json));
       });
   };
 }

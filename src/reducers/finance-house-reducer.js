@@ -4,6 +4,7 @@ import {
   GET_DESC,
   GET_VEH,
   SEARCH_DEALERS,
+  GET_ALLVEH,
 } from "../actions/fin-house-actions";
 const initialState = {
   //postCode: "",
@@ -46,6 +47,12 @@ const financeHouse = (state = initialState, action) => {
       return {
         ...state,
         dealerSearchResults: action.json,
+        loading: false,
+      };
+    case GET_ALLVEH:
+      return {
+        ...state,
+        vehicleDetails: action.json,
         loading: false,
       };
     default:
