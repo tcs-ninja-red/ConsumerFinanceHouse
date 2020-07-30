@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Alert from '../elements/alert'
-import { Field } from 'redux-form';
-import { InputSelect } from '../elements/input-select';
-import { InputField } from '../elements/input-field';
+import Alert from "../elements/alert";
+import { Field } from "redux-form";
+import { InputSelect } from "../elements/input-select";
+import { InputField } from "../elements/input-field";
 
 export class FinanceHouseForm extends Component {
   constructor() {
@@ -12,6 +12,7 @@ export class FinanceHouseForm extends Component {
       makeValue: "",
       modelValue: "",
       descValue: "",
+      colorValue: "",
       makeList: [],
       modelList: [],
       descList: [],
@@ -22,6 +23,7 @@ export class FinanceHouseForm extends Component {
     this.handleChangeMake = this.handleChangeMake.bind(this);
     this.handleChangeModel = this.handleChangeModel.bind(this);
     this.handleChangeDesc = this.handleChangeDesc.bind(this);
+    this.handleChangeColor = this.handleChangeColor.bind(this);
     this.handlePostCodeChange = this.handlePostCodeChange.bind(this);
   }
 
@@ -57,8 +59,47 @@ export class FinanceHouseForm extends Component {
     );
   }
 
+  handleChangeColor(event) {
+    var selectedIdx = event.target.selectedIndex;
+    var selectedColor = event.target[selectedIdx].text;
+    this.setState({ colorValue: selectedColor });
+  }
+
   handlePostCodeChange(event) {
     this.setState({ postCode: event.target.value });
+  }
+
+  getBrandLogo(make) {
+    switch (make) {
+      case "Chevrolet":
+        return (
+          <img
+            className="logo-mall"
+            src={require("../../assets/images/Chevrolet-logo.png")}
+          />
+        );
+      case "Ferrari":
+        return (
+          <img
+            className="logo-mall"
+            src={require("../../assets/images/logo-Ferrari.png")}
+          />
+        );
+      case "Audi":
+        return (
+          <img
+            className="logo-mall"
+            src={require("../../assets/images/Audi-logo.png")}
+          />
+        );
+      default:
+        return (
+          <img
+            className="logo-mall"
+            src={require("../../assets/images/logo.png")}
+          />
+        );
+    }
   }
 
   render() {
@@ -72,20 +113,28 @@ export class FinanceHouseForm extends Component {
         <div className="finance-container">
           <div className="title-bar">
             <a className="navbar-brand" href="#">
-              <img className="logo-small" src={require("../../assets/images/logo.png")} />
+              <img
+                className="logo-small"
+                src={require("../../assets/images/logo.png")}
+              />
             </a>
-            <span className="is-size-3 has-text-weight-medium">Choose your Car</span>
+            <span className="is-size-3 has-text-weight-medium">
+              Choose your Car
+            </span>
           </div>
           <div className="finance-content">
             <Alert />
             <br />
 
             <form>
-              <span className="is-size-4 has-text-weight-medium">Let's get started with your choice of car</span>
+              <span className="is-size-4 has-text-weight-medium">
+                Let's get started with your choice of car
+              </span>
               <hr className="heading-divider" />
               <br />
               <div className="finance-content-form">
-                <Field name="carType"
+                <Field
+                  name="carType"
                   component={InputSelect}
                   label="Car make"
                   labelWidth={110}
@@ -129,17 +178,13 @@ export class FinanceHouseForm extends Component {
                   helperText="Pleae chose one of the car segment"
                 >
                   <option value="" />
-                  {
-                    financeHouseState.descriptionList &&
+                  {financeHouseState.descriptionList &&
                     financeHouseState.descriptionList.length > 0 &&
-                    financeHouseState.descriptionList.map(
-                      (model, idx) => (
-                        <option key={idx} value={idx}>
-                          {model}
-                        </option>
-                      )
-                    )
-                  }
+                    financeHouseState.descriptionList.map((model, idx) => (
+                      <option key={idx} value={idx}>
+                        {model}
+                      </option>
+                    ))}
                 </Field>
                 <br />
                 <Field
@@ -147,17 +192,18 @@ export class FinanceHouseForm extends Component {
                   component={InputSelect}
                   label="Car color"
                   labelWidth={110}
+                  onChange={this.handleChangeColor}
                   helperText="Pleae chose one of the car color"
                 >
                   <option value="" />
                   {financeHouseState.vehicleDetails &&
-                    financeHouseState.vehicleDetails.length > 0 && (
-                      financeHouseState.vehicleDetails[0].color.map((color, idx) => (
-
+                    financeHouseState.vehicleDetails.length > 0 &&
+                    financeHouseState.vehicleDetails[0].color.map(
+                      (color, idx) => (
                         <option key={idx} value={idx}>
                           {color}
                         </option>
-                      ))
+                      )
                     )}
                 </Field>
                 <br />
@@ -165,8 +211,8 @@ export class FinanceHouseForm extends Component {
                   component={InputField}
                   labelWidth={175}
                   onChange={this.handlePostCodeChange}
-                  name='findDealer'
-                  label='Find your nearest dealer'
+                  name="findDealer"
+                  label="Find your nearest dealer"
                   helperText="Please enter your nearest post code"
                 />
               </div>
@@ -176,103 +222,99 @@ export class FinanceHouseForm extends Component {
                 <div className="column">
                   <button
                     type="button"
-                    onClick={() =>
-                      this.props.searchDealer(this.state.postCode)
-                    }
+                    onClick={() => this.props.searchDealer(this.state.postCode)}
                     className="button is-primary is-medium"
                   >
                     Find your best dealer
-                    </button>
+                  </button>
                 </div>
               </div>
             </form>
             <br />
             <br />
-            <span className="is-size-4 has-text-weight-medium">Your options</span>
+            <span className="is-size-4 has-text-weight-medium">
+              Your options
+            </span>
             <br />
             <br />
-            <div class="box">
-              <div class="columns">
-                <div class="column is-one-quarter">
-                  <img className="logo-mall" src={require("../../assets/images/Chevrolet-logo.png")} />
-                </div>
-                <div class="column">
-                  <span className="plan-header is-size-4 has-text-weight-medium">Chevrolet - Aveo - Medium car 1.4</span>
-                  <ul>
-                    <li>Manual</li>
-                    <li>Petrol</li>
-                    <li>Sedan</li>
-                    <li>Black</li>
-                  </ul>
-                </div>
-                <div class="column is-one-quarter">
-                  <div className="columns is-mobile">
-                    <div className="column">
-                      <div className="is-size-3 has-text-weight-bold">6.9% APR</div>
-                      <br />
-                      <div className="is-size-6">Vehicle cost : £60,000.00</div>
-                      <br />
-                      <div className="is-size-6">Located in Cowbridge, South Glamorgan</div>
-                      <br />
-                      <div className="columns is-mobile">
-                        <div className="column">
-                          <button className="button is-primary is-medium" onClick={onQuote}>
-                            Proceed to Quote
-                          </button>
+            {financeHouseState.vehicleDetails &&
+            financeHouseState.vehicleDetails.length > 0 &&
+            financeHouseState.dealerSearchResults &&
+            financeHouseState.dealerSearchResults.length > 0 ? (
+              financeHouseState.dealerSearchResults.map((dealer, idx) => (
+                <div className="box" key={idx}>
+                  {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
+                    <div className="columns" key={idx1}>
+                      <div className="column is-one-quarter">
+                        {this.getBrandLogo(vehicle.make_name)}
+                      </div>
+                      <div className="column">
+                        <span className="plan-header is-size-4 has-text-weight-medium">
+                          {vehicle.make_name +
+                            "-" +
+                            vehicle.model_name +
+                            "-" +
+                            vehicle.description}
+                        </span>
+                        <ul>
+                          <li>{vehicle.transmission}</li>
+                          <li>{vehicle.fuel_type}</li>
+                          <li>{vehicle.body_style}</li>
+                          <li>{this.state.colorValue}</li>
+                        </ul>
+                      </div>
+                      <div className="column is-one-quarter">
+                        <div className="columns is-mobile">
+                          <div className="column">
+                            <div className="is-size-3 has-text-weight-bold">
+                              {dealer.dealer_apr}% APR
+                            </div>
+                            <br />
+                            <div className="is-size-6">
+                              Vehicle cost : £{vehicle.cash_price}
+                            </div>
+                            <br />
+                            <div className="is-size-6">
+                              {dealer.dealer_name}
+                            </div>
+                            <div className="is-size-6">
+                              {"Located in : " +
+                                dealer.town +
+                                ", " +
+                                dealer.city +
+                                ", " +
+                                dealer.postcode}
+                            </div>
+                            <br />
+                            <div className="columns is-mobile">
+                              <div className="column">
+                                <button
+                                  className="button is-primary is-medium"
+                                  onClick={() =>
+                                    onQuote(
+                                      vehicle,
+                                      dealer,
+                                      this.state.colorValue
+                                    )
+                                  }
+                                >
+                                  Proceed to Quote
+                                </button>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              </div>
-            </div>
-
-            <div class="box">
-              <div class="columns">
-                <div class="column is-one-quarter">
-                  <img className="logo-mall" src={require("../../assets/images/Chevrolet-logo.png")} />
-                </div>
-                <div class="column">
-                  <span className="plan-header is-size-4 has-text-weight-medium">Chevrolet - Aveo - Medium car 1.4</span>
-                  <ul>
-                    <li>Manual</li>
-                    <li>Petrol</li>
-                    <li>Sedan</li>
-                    <li>Black</li>
-                  </ul>
-                </div>
-                <div class="column is-one-quarter">
-                  <div className="columns is-mobile">
-                    <div className="column">
-                      <div className="is-size-3 has-text-weight-bold">5.6% APR</div>
-                      <br />
-                      <div className="is-size-6">Vehicle cost : £60,000.00</div>
-                      <br />
-                      <div className="is-size-6">Located in Mitcham, Surrey</div>
-                      <br />
-                      <div className="columns is-mobile">
-                        <div className="column is-full">
-                          <button className="button is-primary is-medium" onClick={onQuote}>
-                            Proceed to Quote
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))
+            ) : (
+              <span>{financeHouseState.dealerSearchResults.message}</span>
+            )}
 
             <hr className="heading-divider" />
             <br />
-            <div className="columns is-mobile">
-              <div className="column">
-                <button className="button is-primary is-medium" onClick={onQuote}>
-                  Proceed to Quote
-              </button>
-              </div>
-            </div>
-
           </div>
         </div>
       </React.Fragment>

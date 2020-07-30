@@ -4,6 +4,7 @@ import {
   GET_DESC,
   GET_VEH,
   SEARCH_DEALERS,
+  TO_QUOTE,
   GET_ALLVEH,
 } from "../actions/fin-house-actions";
 const initialState = {
@@ -12,7 +13,8 @@ const initialState = {
   makeList: "",
   modelList: "",
   descriptionList: "",
-  vehicleDetails: ""
+  vehicleDetails: "",
+  selectedForQuote: "",
 };
 
 const financeHouse = (state = initialState, action) => {
@@ -47,6 +49,13 @@ const financeHouse = (state = initialState, action) => {
       return {
         ...state,
         dealerSearchResults: action.json,
+        loading: false,
+      };
+    case TO_QUOTE:
+      //console.log("action.json", action.json);
+      return {
+        ...state,
+        selectedForQuote: action.json,
         loading: false,
       };
     case GET_ALLVEH:
