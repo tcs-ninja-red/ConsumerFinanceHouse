@@ -17,6 +17,7 @@ export const mapStateToProps = (state) => ({
   PCPQuoteState: state.quote.PCPQuote,
   Quotefinancialstate: state.quote.QuoteResults.financial,
   financeHouseState: state.financeHouse,
+  selectedFinHouse: state.financeHouse.selectedForQuote,
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

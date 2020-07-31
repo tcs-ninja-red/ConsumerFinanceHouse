@@ -77,32 +77,32 @@ export class FinanceHouseForm extends Component {
 
   getBrandLogo(dealer_name) {
     switch (dealer_name) {
-      case "Suzuki Motor pvt Ltd":
+      case "Hexa":
         return (
           <img
             className="logo-mall"
-            src={require("../../assets/images/logo_suzuki.png")}
+            src={require("../../assets/images/hexa.png")}
           />
         );
-      case "Frontier Hyundai":
+      case "Circle":
         return (
           <img
             className="logo-mall"
-            src={require("../../assets/images/logo_FrontierHyundai.png")}
+            src={require("../../assets/images/circle.png")}
           />
         );
-      case "Cherish Honda":
+      case "Treva":
         return (
           <img
             className="logo-mall"
-            src={require("../../assets/images/logo_CherishHonda.png")}
+            src={require("../../assets/images/treva.png")}
           />
         );
-      case "Galaxy Toyota":
+      case "Aven":
         return (
           <img
             className="logo-mall"
-            src={require("../../assets/images/logo_GalaxyToyota.png")}
+            src={require("../../assets/images/aven.png")}
           />
         );
       default:
@@ -251,80 +251,80 @@ export class FinanceHouseForm extends Component {
             <br />
             <br />
             {financeHouseState.vehicleDetails &&
-            financeHouseState.vehicleDetails.length > 0 &&
-            financeHouseState.dealerSearchResults &&
-            financeHouseState.dealerSearchResults.length > 0 ? (
-              financeHouseState.dealerSearchResults.map((dealer, idx) => (
-                <div className="box" key={idx}>
-                  {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
-                    <div className="columns" key={idx1}>
-                      <div className="column is-one-quarter">
-                        {this.getBrandLogo(dealer.dealer_name)}
-                      </div>
-                      <div className="column">
-                        <span className="plan-header is-size-4 has-text-weight-medium">
-                          {vehicle.make_name +
-                            "-" +
-                            vehicle.model_name +
-                            "-" +
-                            vehicle.description}
-                        </span>
-                        <ul>
-                          <li>{vehicle.transmission}</li>
-                          <li>{vehicle.fuel_type}</li>
-                          <li>{vehicle.body_style}</li>
-                          <li>{this.state.colorValue}</li>
-                        </ul>
-                      </div>
-                      <div className="column is-one-quarter">
-                        <div className="columns is-mobile">
-                          <div className="column">
-                            <div className="is-size-3 has-text-weight-bold">
-                              {dealer.dealer_apr}% APR
+              financeHouseState.vehicleDetails.length > 0 &&
+              financeHouseState.dealerSearchResults &&
+              financeHouseState.dealerSearchResults.length > 0 ? (
+                financeHouseState.dealerSearchResults.map((dealer, idx) => (
+                  <div className="box" key={idx}>
+                    {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
+                      <div className="columns" key={idx1}>
+                        <div className="column is-one-quarter">
+                          {this.getBrandLogo(dealer.dealer_name)}
+                        </div>
+                        <div className="column">
+                          <span className="plan-header is-size-4 has-text-weight-medium">
+                            {vehicle.make_name +
+                              "-" +
+                              vehicle.model_name +
+                              "-" +
+                              vehicle.description}
+                          </span>
+                          <ul>
+                            <li>{vehicle.transmission}</li>
+                            <li>{vehicle.fuel_type}</li>
+                            <li>{vehicle.body_style}</li>
+                            <li>{this.state.colorValue}</li>
+                          </ul>
+                        </div>
+                        <div className="column is-one-quarter">
+                          <div className="columns is-mobile">
+                            <div className="column">
+                              <div className="is-size-3 has-text-weight-bold">
+                                {dealer.dealer_apr}% APR
                             </div>
-                            <br />
-                            <div className="is-size-6">
-                              Vehicle cost : £{vehicle.cash_price}
-                            </div>
-                            <br />
-                            <div className="is-size-6">
-                              {dealer.dealer_name}
-                            </div>
-                            <div className="is-size-6">
-                              {"Located in : " +
-                                dealer.town +
-                                ", " +
-                                dealer.city +
-                                ", " +
-                                dealer.postcode}
-                            </div>
-                            <br />
-                            <div className="columns is-mobile">
-                              <div className="column">
-                                <button
-                                  className="button is-primary is-medium"
-                                  onClick={() =>
-                                    onQuote(
-                                      vehicle,
-                                      dealer,
-                                      this.state.colorValue
-                                    )
-                                  }
-                                >
-                                  Proceed to Quote
+                              <br />
+                              <div className="is-size-6">
+                                Vehicle cost : £{vehicle.cash_price}
+                              </div>
+                              <br />
+                              <div className="is-size-6">
+                                {dealer.dealer_name}
+                              </div>
+                              <div className="is-size-6">
+                                {"Located in : " +
+                                  dealer.town +
+                                  ", " +
+                                  dealer.city +
+                                  ", " +
+                                  dealer.postcode}
+                              </div>
+                              <br />
+                              <div className="columns is-mobile">
+                                <div className="column">
+                                  <button
+                                    className="button is-primary is-medium"
+                                    onClick={() =>
+                                      onQuote(
+                                        vehicle,
+                                        dealer,
+                                        this.state.colorValue
+                                      )
+                                    }
+                                  >
+                                    Proceed to Quote
                                 </button>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              ))
-            ) : (
-              <span>{financeHouseState.dealerSearchResults.message}</span>
-            )}
+                    ))}
+                  </div>
+                ))
+              ) : (
+                <span>{financeHouseState.dealerSearchResults.message}</span>
+              )}
 
             <hr className="heading-divider" />
             <br />

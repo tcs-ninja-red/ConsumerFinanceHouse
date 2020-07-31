@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Field } from 'redux-form';
 import { InputSelect } from '../elements/input-select';
 import QuoteDetails from '../elements/quote-details';
+import { VehicleSummaryForm } from '../form/vehicle-summary-form';
 
 export class QuoteForm extends Component {
   constructor() {
@@ -73,7 +74,7 @@ export class QuoteForm extends Component {
 
 
   render() {
-    const { QuoteState, PCPQuoteState, financeHouseState, toProposal, ToQuotes, Quotefinancialstate } = this.props;
+    const { QuoteState, PCPQuoteState, financeHouseState, toProposal, ToQuotes, Quotefinancialstate, selectedFinHouse } = this.props;
 
     return (
       <React.Fragment>
@@ -90,33 +91,7 @@ export class QuoteForm extends Component {
               <span className="is-size-4 has-text-weight-medium">Your vehicle summary</span>
               <br />
               <br />
-              <div class="box">
-                <div class="columns">
-                  <div class="column is-one-quarter">
-                    <img className="logo-mall" src={require("../../assets/images/logo-Ferrari.png")} />
-                  </div>
-                  <div class="column">
-                    <span className="plan-header is-size-4 has-text-weight-medium">{financeHouseState.vehicleDetails[0].make_name} - {financeHouseState.vehicleDetails[0].model_name} - {financeHouseState.vehicleDetails[0].description}</span>
-                    <ul>
-                      <li>{financeHouseState.vehicleDetails[0].transmission}</li>
-                      <li>Petrol</li>
-                      <li> {financeHouseState.vehicleDetails[0].body_style}</li>
-                      <li>Black</li>
-                    </ul>
-                  </div>
-                  <div class="column is-one-quarter">
-                    <div className="columns is-mobile">
-                      <div className="column">
-                        <div className="is-size-3 has-text-weight-bold">5.6% APR</div>
-                        <br />
-                        <div className="is-size-6">Vehicle cost : £{financeHouseState.vehicleDetails[0].cash_price}</div>
-                        <br />
-                        <div className="is-size-6">Located in Mitcham, Surrey</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <VehicleSummaryForm selectedFinHouse={selectedFinHouse}></VehicleSummaryForm>
               <br />
               <form>
                 <span className="is-size-4 has-text-weight-medium">Calculate your finance options</span>

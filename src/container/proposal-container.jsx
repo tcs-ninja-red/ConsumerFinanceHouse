@@ -10,7 +10,7 @@ const ProposalPageContainer = new reduxForm({
 
 export const mapStateToProps = state => ({
     fullState: state,
-    vehicleDetails: state.financeHouse.vehicleDetails[0],
+    selectedFinHouse: state.financeHouse.selectedForQuote,
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
