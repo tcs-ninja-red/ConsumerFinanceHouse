@@ -6,6 +6,7 @@ import {
   SEARCH_DEALERS,
   TO_QUOTE,
   GET_ALLVEH,
+  FIN_RESET,
 } from "../actions/fin-house-actions";
 const initialState = {
   //postCode: "",
@@ -20,6 +21,16 @@ const initialState = {
 const financeHouse = (state = initialState, action) => {
   console.log("action.type", action.type);
   switch (action.type) {
+    case FIN_RESET:
+      return {
+        ...state,
+        dealerSearchResults: "",
+        // makeList: "",
+        modelList: "",
+        descriptionList: "",
+        vehicleDetails: "",
+        selectedForQuote: "",
+      };
     case GET_MAKE:
       return {
         ...state,

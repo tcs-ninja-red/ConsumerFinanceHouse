@@ -5,7 +5,12 @@ export const GET_VEH = "GET_VEH";
 export const GET_ALLVEH = "GET_ALLVEH";
 export const SEARCH_DEALERS = "SEARCH_DEALERS";
 export const TO_QUOTE = "TO_QUOTE";
+export const FIN_RESET = "FIN_RESET";
 
+
+export const reset = () => ({
+  type: FIN_RESET,
+});
 export const getMake = (json) => ({
   type: GET_MAKE,
   json: json,
@@ -35,6 +40,13 @@ export const proceedToQuoteResults = (json) => ({
   type: TO_QUOTE,
   json: json,
 });
+
+///Reset finhouse state
+export function ResetFinHouseState() {
+  return function (dispatch) {
+    dispatch(reset());
+  }
+}
 
 //Proceed to Quote screen
 export function proceedToQuote(vehicle, dealer, color) {

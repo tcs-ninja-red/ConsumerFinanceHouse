@@ -8,6 +8,7 @@ import {
   getVehicleDetails,
   getVehicleDescriptions,
   proceedToQuote,
+  ResetFinHouseState,
 } from "../actions/fin-house-actions";
 import * as Navigate from "../constants/routes-constant";
 
@@ -30,10 +31,18 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     //console.log("postcd", postcd);
     dispatch(searchDealer(postcd));
   },
+  resetFinHouseStateValues: () => {
+    // console.log('reset from container');
+    // dispatch(ResetFinHouseState());
+  },
   getVehicleMakes: () => {
     dispatch(getVehicleMakes());
   },
   getVehicleModels: (make) => {
+
+    console.log('reset from container');
+    dispatch(ResetFinHouseState());
+
     dispatch(getVehicleModels(make));
   },
   getVehicleDetails: (make, model, description) => {
