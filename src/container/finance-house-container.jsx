@@ -39,9 +39,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(getVehicleMakes());
   },
   getVehicleModels: (make) => {
-
-    console.log('reset from container');
-    dispatch(ResetFinHouseState());
+    //dispatch(ResetFinHouseState());
 
     dispatch(getVehicleModels(make));
   },

@@ -35,9 +35,14 @@ export class FinanceHouseForm extends Component {
   handleChangeMake(event) {
     var selectedIdx = event.target.selectedIndex;
     var selectedMake = event.target[selectedIdx].text;
-    this.setState({ makeValue: selectedMake });
+    this.setState({
+      makeValue: selectedMake,
+    });
 
-    // this.props.resetFinHouseStateValues();
+    //reset dropdowns before populating again
+    this.props.getVehicleDetails(null, null, null);
+    this.props.getVehicleDescriptions(null, null);
+
     this.props.getVehicleModels(selectedMake);
   }
 
@@ -153,7 +158,7 @@ export class FinanceHouseForm extends Component {
                   {financeHouseState.makeList &&
                     financeHouseState.makeList.length > 0 &&
                     financeHouseState.makeList.map((model, idx) => (
-                      <option key={idx} value={idx}>
+                      <option key={idx} value={model}>
                         {model}
                       </option>
                     ))}
@@ -171,7 +176,7 @@ export class FinanceHouseForm extends Component {
                   {financeHouseState.modelList &&
                     financeHouseState.modelList.length > 0 &&
                     financeHouseState.modelList.map((model, idx) => (
-                      <option key={idx} value={idx}>
+                      <option key={idx} value={model}>
                         {model}
                       </option>
                     ))}
@@ -189,7 +194,7 @@ export class FinanceHouseForm extends Component {
                   {financeHouseState.descriptionList &&
                     financeHouseState.descriptionList.length > 0 &&
                     financeHouseState.descriptionList.map((model, idx) => (
-                      <option key={idx} value={idx}>
+                      <option key={idx} value={model}>
                         {model}
                       </option>
                     ))}
@@ -208,7 +213,7 @@ export class FinanceHouseForm extends Component {
                     financeHouseState.vehicleDetails.length > 0 &&
                     financeHouseState.vehicleDetails[0].color.map(
                       (color, idx) => (
-                        <option key={idx} value={idx}>
+                        <option key={idx} value={color}>
                           {color}
                         </option>
                       )
@@ -246,80 +251,80 @@ export class FinanceHouseForm extends Component {
             <br />
             <br />
             {financeHouseState.vehicleDetails &&
-              financeHouseState.vehicleDetails.length > 0 &&
-              financeHouseState.dealerSearchResults &&
-              financeHouseState.dealerSearchResults.length > 0 ? (
-                financeHouseState.dealerSearchResults.map((dealer, idx) => (
-                  <div className="box" key={idx}>
-                    {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
-                      <div className="columns" key={idx1}>
-                        <div className="column is-one-quarter">
-                          {this.getBrandLogo(dealer.dealer_name)}
-                        </div>
-                        <div className="column">
-                          <span className="plan-header is-size-4 has-text-weight-medium">
-                            {vehicle.make_name +
-                              "-" +
-                              vehicle.model_name +
-                              "-" +
-                              vehicle.description}
-                          </span>
-                          <ul>
-                            <li>{vehicle.transmission}</li>
-                            <li>{vehicle.fuel_type}</li>
-                            <li>{vehicle.body_style}</li>
-                            <li>{this.state.colorValue}</li>
-                          </ul>
-                        </div>
-                        <div className="column is-one-quarter">
-                          <div className="columns is-mobile">
-                            <div className="column">
-                              <div className="is-size-3 has-text-weight-bold">
-                                {dealer.dealer_apr}% APR
+            financeHouseState.vehicleDetails.length > 0 &&
+            financeHouseState.dealerSearchResults &&
+            financeHouseState.dealerSearchResults.length > 0 ? (
+              financeHouseState.dealerSearchResults.map((dealer, idx) => (
+                <div className="box" key={idx}>
+                  {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
+                    <div className="columns" key={idx1}>
+                      <div className="column is-one-quarter">
+                        {this.getBrandLogo(dealer.dealer_name)}
+                      </div>
+                      <div className="column">
+                        <span className="plan-header is-size-4 has-text-weight-medium">
+                          {vehicle.make_name +
+                            "-" +
+                            vehicle.model_name +
+                            "-" +
+                            vehicle.description}
+                        </span>
+                        <ul>
+                          <li>{vehicle.transmission}</li>
+                          <li>{vehicle.fuel_type}</li>
+                          <li>{vehicle.body_style}</li>
+                          <li>{this.state.colorValue}</li>
+                        </ul>
+                      </div>
+                      <div className="column is-one-quarter">
+                        <div className="columns is-mobile">
+                          <div className="column">
+                            <div className="is-size-3 has-text-weight-bold">
+                              {dealer.dealer_apr}% APR
                             </div>
-                              <br />
-                              <div className="is-size-6">
-                                Vehicle cost : £{vehicle.cash_price}
-                              </div>
-                              <br />
-                              <div className="is-size-6">
-                                {dealer.dealer_name}
-                              </div>
-                              <div className="is-size-6">
-                                {"Located in : " +
-                                  dealer.town +
-                                  ", " +
-                                  dealer.city +
-                                  ", " +
-                                  dealer.postcode}
-                              </div>
-                              <br />
-                              <div className="columns is-mobile">
-                                <div className="column">
-                                  <button
-                                    className="button is-primary is-medium"
-                                    onClick={() =>
-                                      onQuote(
-                                        vehicle,
-                                        dealer,
-                                        this.state.colorValue
-                                      )
-                                    }
-                                  >
-                                    Proceed to Quote
+                            <br />
+                            <div className="is-size-6">
+                              Vehicle cost : £{vehicle.cash_price}
+                            </div>
+                            <br />
+                            <div className="is-size-6">
+                              {dealer.dealer_name}
+                            </div>
+                            <div className="is-size-6">
+                              {"Located in : " +
+                                dealer.town +
+                                ", " +
+                                dealer.city +
+                                ", " +
+                                dealer.postcode}
+                            </div>
+                            <br />
+                            <div className="columns is-mobile">
+                              <div className="column">
+                                <button
+                                  className="button is-primary is-medium"
+                                  onClick={() =>
+                                    onQuote(
+                                      vehicle,
+                                      dealer,
+                                      this.state.colorValue
+                                    )
+                                  }
+                                >
+                                  Proceed to Quote
                                 </button>
-                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                ))
-              ) : (
-                <span>{financeHouseState.dealerSearchResults.message}</span>
-              )}
+                    </div>
+                  ))}
+                </div>
+              ))
+            ) : (
+              <span>{financeHouseState.dealerSearchResults.message}</span>
+            )}
 
             <hr className="heading-divider" />
             <br />
