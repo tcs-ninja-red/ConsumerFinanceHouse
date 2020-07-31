@@ -33,12 +33,24 @@ export class ProposalDecisionForm extends Component {
                             {proposalStatus && <Typography>
                                 Something went wrong! Please try again after sometime!
                             </Typography>}
-                            {proposalSuccess && <Typography variant="h5" component="h2">
-                                Decision:  {proposalSuccess}
-                            </Typography>}
-                            {proposalFail && <Typography variant="h5" component="h2">
-                                Fail:  {proposalFail}
-                            </Typography>}
+                            {proposalSuccess && proposalSuccess.decision &&
+                                <Typography variant="h5" component="h2">
+                                    Decision:  {proposalSuccess.decision.decision_message}
+                                </Typography>}
+                            {proposalFail &&
+                                <Typography variant="h5" component="h2">
+                                    Fail:
+                                     {/* {proposalFail.messages} */}
+
+                                    {proposalFail.messages.map((message, idx1) => (
+                                        <div className="columns" key={idx1}>
+                                            <div className="column">
+                                                <span>
+                                                    {message}
+                                                </span></div></div>
+                                    ))}
+
+                                </Typography>}
                             {!proposalSuccess && !proposalFail && <Typography variant="h5" component="h2">
                                 Something went wrong! Please try again after sometime!  {proposalFail}
                             </Typography>}
