@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { reduxForm } from "redux-form";
-import { SampledealerForm } from "../component/sample-dealerform";
+import { SampledealerForm } from "../component/form/sample-dealerform";
 import {
   searchDealer,
   getVehicleMakes,

@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Field } from "redux-form";
-import { SampleField } from "./sample-field";
-import "../styles/finhouse.css";
+import { SampleField } from "../sample-field";
+import "../../styles/finhouse.css";
 import { useSelector } from "react-redux";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "../styles/home.css";
+import "../../styles/home.css";
 import { GridComponent, ColumnDirective, ColumnsDirective, Page, Inject, Filter, Group } from '@syncfusion/ej2-react-grids';
+import { InputSelect } from '../elements/input-select';
+import { InputField } from '../elements/input-field';
 
 
 export class SampledealerForm extends Component {
@@ -116,83 +118,60 @@ export class SampledealerForm extends Component {
     
     return (
       <React.Fragment>
-        <div className="form-body">
+        <div className="finance-container">
+          <div className="title-bar">
+            { <a className="navbar-brand" href="#">
+              <img className="logo-small" src={require("../../assets/images/logo.png")} />
+            </a> }
+            <span className="is-size-3 has-text-weight-medium">Choose your Car</span>
+          </div>
+          <div className="finance-content">
+            
+            <br />
 
           <form>
-            <div className="container">
-              <div className="row">
-                <div className="col-sm">
-                  <div className="form-group">
-                    <label>Make:</label>
-                    <select
-                      className="form-control md"
-                      onChange={this.handleChangeMake}
-                    >
-                      <option className="dorpdowns" value="0"></option>
-                      {/* {this.state.makeList.map((make) => (
-                        <option key={make.id} value={make.id}>
-                          {make.value}
-                        </option>
-                      ))} */}
-                      {financeHouseState.makeList &&
-                        financeHouseState.makeList.length > 0 &&
-                        financeHouseState.makeList.map((model, idx) => (
-                          <option key={idx} value={idx}>
-                            {model}
-                          </option>
-                        ))}
-                    </select>
-                  </div>
+            <span className="is-size-4 has-text-weight-medium">Let's get started with your choice of car</span>
+              <hr className="heading-divider" />
+              <br />
+              <div className="finance-content-form">
+                <Field name="carType"
+                  component={InputSelect}
+                  label="Car make"
+                  labelWidth={110}
+                  onChange={this.handleChangeMake}
+                  helperText="Pleae chose one of the car make"
+                >
+                  <option value="" />
+                  {financeHouseState.makeList &&
+                    financeHouseState.makeList.length > 0 &&
+                    financeHouseState.makeList.map((model, idx) => (
+                      <option key={idx} value={idx}>
+                        {model}
+                      </option>
+                    ))}
+                </Field>
+                <br />
+                <Field
+                  name="carModel"
+                  component={InputSelect}
+                  label="Car model"
+                  labelWidth={110}
+                  onChange={this.handleChangeModel}
+                  helperText="Pleae chose one of the car model"
+                >
+                  <option value="" />
+                  {financeHouseState.modelList &&
+                    financeHouseState.modelList.length > 0 &&
+                    financeHouseState.modelList.map((model, idx) => (
+                      <option key={idx} value={idx}>
+                        {model}
+                      </option>
+                    ))}
+                </Field>
+                
+                <br />
                 </div>
-                <div className="col-sm">
-                  <div className="form-group">
-                    <label>Model:</label>
-                    <select
-                      className="form-control md"
-                      onChange={this.handleChangeModel}
-                    >
-                      <option value="0"></option>
-                      {financeHouseState.modelList &&
-                        financeHouseState.modelList.length > 0 &&
-                        financeHouseState.modelList.map((model, idx) => (
-                          <option key={idx} value={idx}>
-                            {model}
-                          </option>
-                        ))}
-                    </select>
-                    </div>
-                    </div>
-                    {/* <div className="col-sm">
-                  <div className="form-group">
-                    <label>Description:</label>
-                    <select
-                            className="form-control md"
-                            onChange={this.handleChangeDesc}
-                          >
-                            <option value="0"></option>
-
-                            {
-                              financeHouseState.descriptionList &&
-                              financeHouseState.descriptionList.length > 0 &&
-                              financeHouseState.descriptionList.map(
-                                (model, idx) => (
-                                  <option key={idx} value={idx}>
-                                    {model}
-                                  </option>
-                                )
-                              )
-                              // : (
-                              //   <span>
-                              //     {financeHouseState.dealerSearchResults.message}
-                              //   </span>
-                              // )
-                            }
-                          </select>
-                  </div>
-                </div> */}
-
-              </div>
-            </div>
+                
             <hr />
 
             <div>
@@ -235,13 +214,15 @@ export class SampledealerForm extends Component {
           </form>
          <hr className="heading-divider" />
           <br />
-          <div className="columns is-mobile">
-            <div className="column">
+          { <div className="columns is-mobile">
+            <div className="column"> 
               <button className="button is-primary is-medium" onClick={onQuote}>Proceed to quote</button>
             </div>
-          </div>
+          </div> }
+</div>
+</div>
 
-        </div>
+        
       </React.Fragment>
     );
   }
