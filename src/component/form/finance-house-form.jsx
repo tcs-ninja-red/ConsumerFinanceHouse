@@ -40,6 +40,9 @@ export class FinanceHouseForm extends Component {
     });
 
     //reset dropdowns before populating again
+    this.setState({
+      financeHouseState: null,
+    });
     this.props.getVehicleDetails(null, null, null);
     this.props.getVehicleDescriptions(null, null);
 
@@ -75,44 +78,45 @@ export class FinanceHouseForm extends Component {
     this.setState({ postCode: event.target.value });
   }
 
-  getBrandLogo(dealer_name) {
-    switch (dealer_name) {
-      case "Suzuki Motor pvt Ltd":
-        return (
-          <img
-            className="logo-mall"
-            src={require("../../assets/images/logo_suzuki.png")}
-          />
-        );
-      case "Frontier Hyundai":
-        return (
-          <img
-            className="logo-mall"
-            src={require("../../assets/images/logo_FrontierHyundai.png")}
-          />
-        );
-      case "Cherish Honda":
-        return (
-          <img
-            className="logo-mall"
-            src={require("../../assets/images/logo_CherishHonda.png")}
-          />
-        );
-      case "Galaxy Toyota":
-        return (
-          <img
-            className="logo-mall"
-            src={require("../../assets/images/logo_GalaxyToyota.png")}
-          />
-        );
-      default:
-        return (
-          <img
-            className="logo-mall"
-            src={require("../../assets/images/logo.png")}
-          />
-        );
-    }
+  getBrandLogo(img) {
+    return <img className="logo-mall" src={img} />;
+    // switch (dealer_name) {
+    //   case "Hexa":
+    //     return (
+    //       <img
+    //         className="logo-mall"
+    //         src={require("../../assets/images/hexa.png")}
+    //       />
+    //     );
+    //   case "Circle":
+    //     return (
+    //       <img
+    //         className="logo-mall"
+    //         src={require("../../assets/images/circle.png")}
+    //       />
+    //     );
+    //   case "Treva":
+    //     return (
+    //       <img
+    //         className="logo-mall"
+    //         src={require("../../assets/images/treva.png")}
+    //       />
+    //     );
+    //   case "Aven":
+    //     return (
+    //       <img
+    //         className="logo-mall"
+    //         src={require("../../assets/images/aven.png")}
+    //       />
+    //     );
+    //   default:
+    //     return (
+    //       <img
+    //         className="logo-mall"
+    //         src={require("../../assets/images/logo.png")}
+    //       />
+    //     );
+    // }
   }
 
   render() {
@@ -259,7 +263,7 @@ export class FinanceHouseForm extends Component {
                   {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
                     <div className="columns" key={idx1}>
                       <div className="column is-one-quarter">
-                        {this.getBrandLogo(dealer.dealer_name)}
+                        {this.getBrandLogo(financeHouseState.carImage)}
                       </div>
                       <div className="column">
                         <span className="plan-header is-size-4 has-text-weight-medium">

@@ -9,6 +9,7 @@ import {
   getVehicleDescriptions,
   proceedToQuote,
   ResetFinHouseState,
+  getCarImage,
 } from "../actions/fin-house-actions";
 import * as Navigate from "../constants/routes-constant";
 
@@ -48,6 +49,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => ({
     dispatch(getVehicleDetails(make, model, description));
   },
   getVehicleDescriptions: (make, model) => {
+    dispatch(getCarImage(make, model));
     dispatch(getVehicleDescriptions(make, model));
   },
 });
