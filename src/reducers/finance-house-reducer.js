@@ -7,6 +7,7 @@ import {
   TO_QUOTE,
   GET_ALLVEH,
   FIN_RESET,
+  CAR_IMG,
 } from "../actions/fin-house-actions";
 const initialState = {
   //postCode: "",
@@ -16,6 +17,7 @@ const initialState = {
   descriptionList: "",
   vehicleDetails: "",
   selectedForQuote: "",
+  carImage: "",
 };
 
 const financeHouse = (state = initialState, action) => {
@@ -68,6 +70,12 @@ const financeHouse = (state = initialState, action) => {
         ...state,
         selectedForQuote: action.json,
         loading: false,
+      };
+    case CAR_IMG:
+      //console.log("action.json", action.json);
+      return {
+        ...state,
+        carImage: action.json,
       };
     case GET_ALLVEH:
       return {

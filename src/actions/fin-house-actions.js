@@ -6,7 +6,7 @@ export const GET_ALLVEH = "GET_ALLVEH";
 export const SEARCH_DEALERS = "SEARCH_DEALERS";
 export const TO_QUOTE = "TO_QUOTE";
 export const FIN_RESET = "FIN_RESET";
-
+export const CAR_IMG = "CAR_IMG";
 
 export const reset = () => ({
   type: FIN_RESET,
@@ -41,11 +41,16 @@ export const proceedToQuoteResults = (json) => ({
   json: json,
 });
 
+export const carImagehResults = (json) => ({
+  type: CAR_IMG,
+  json: json,
+});
+
 ///Reset finhouse state
 export function ResetFinHouseState() {
   return function (dispatch) {
     dispatch(reset());
-  }
+  };
 }
 
 //Proceed to Quote screen
@@ -57,6 +62,34 @@ export function proceedToQuote(vehicle, dealer, color) {
       selectedColor: color,
     };
     dispatch(proceedToQuoteResults(json));
+  };
+}
+
+///Search dealer by postcode
+export function getCarImage(make, model) {
+  return function (dispatch) {
+    //dispatch(requestPosts());
+    console.log("carImg11", make);
+    return fetch(
+      `http://www.carimagery.com/api.asmx/GetImageUrl?searchTerm=${make} ${model}`
+    )
+      .then(
+        (response) => response.text(),
+        (error) => console.log("An error occurred.", error)
+      )
+      .then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
+      .then((data) => {
+        // console.log(
+        //   "carimg",
+        //   data.getElementsByTagName("string")[0].childNodes[0].nodeValue
+
+        // )
+        dispatch(
+          carImagehResults(
+            data.getElementsByTagName("string")[0].childNodes[0].nodeValue
+          )
+        );
+      });
   };
 }
 
