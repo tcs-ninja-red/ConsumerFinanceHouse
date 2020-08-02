@@ -8,24 +8,26 @@ export class HomePageForm extends Component {
           <nav className="level">
             <div className="level-left">
               <a className="navbar-brand" href="#">
-                <img className="logo" src={require("../../assets/images/logo.png")} />
+                <img
+                  className="logo"
+                  src={require("../../assets/images/logo.png")}
+                />
               </a>
             </div>
-            <div className="menu">
-              <div className="level-item">
-                <a className="link is-size-5">About us</a>
-                <a className="link is-size-5">Support</a>
-                <a className="link is-size-5">Contact us</a>
-              </div>
-
-            </div>
             <div className="level-right">
-              <span className="is-size-3">NINJA MOTOR FINANCE</span>
+              <div className="level-item">
+                <a className="link is-size-6">About us</a>
+                <a className="link is-size-6">Support</a>
+                <a className="link is-size-6">Contact us</a>
+              </div>
             </div>
+            {/* <div className="level-right">
+              <span className="is-size-3">NINJA MOTOR FINANCE</span>
+            </div> */}
           </nav>
         </div>
       </React.Fragment>
-    )
+    );
 
     return (
       <React.Fragment>
@@ -34,11 +36,11 @@ export class HomePageForm extends Component {
             {header()}
             <div className="home-body">
               <div className="columns is-mobile ">
-                <div className="column is-three-fifths is-offset-one-fifth has-text-centered">
+                <div className="column is-three-fifths is-offset-one-fifth has-text-centered mt-4">
                   <p className="is-size-3">
                     Choose your perfect car by comparing our car finance plan
                   </p>
-                  <br />
+                  {/* <br /> */}
                   <p className="is-size-6">
                     Fast &amp; Online. Rates from 5.9% APR
                   </p>
