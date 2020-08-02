@@ -11,8 +11,9 @@ const ProposalPageContainer = new reduxForm({
 export const mapStateToProps = state => ({
     fullState: state,
     selectedFinHouse: state.financeHouse.selectedForQuote,
-    selectedQuote: (state.quote.SelectedProduct = "HP" ? state.quote.HPQuoteResults :
-        state.quote.PCPQuoteResults),
+    // selectedQuote: (state.quote.SelectedProduct = "HP" ? state.quote.HPQuoteResults :
+    // state.quote.PCPQuoteResults),
+    selectedQuote: state.quote.SelectedProduct
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({

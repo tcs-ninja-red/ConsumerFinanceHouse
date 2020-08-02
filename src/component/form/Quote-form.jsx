@@ -53,13 +53,13 @@ export class QuoteForm extends Component {
     this.setState({ max_annual_mileage: selectedMileage });
   }
 
-  handleHPProduct = (event) => {
-    this.props.toProposal("HP");
-  }
+  // handleHPProduct = (event) => {
+  //   this.props.toProposal("HP");
+  // }
 
-  handlePCPProduct = (event) => {
-    this.props.toProposal("PCP");
-  }
+  // handlePCPProduct = (event) => {
+  //   this.props.toProposal("PCP");
+  // }
 
   handleQuote = (event) => {
     event.preventDefault();
