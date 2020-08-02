@@ -237,13 +237,14 @@ export class ProposalForm extends Component {
                                             </Grid>
 
                                             <Grid item xs={8}>
+                                                <InputLabel style={{ marginTop: 16 }} id="dob">Dateo Of Birth *</InputLabel>
                                                 <Field
                                                     fullWidth
                                                     required
                                                     name="dob"
                                                     component={TextField}
-                                                    type="text"
-                                                    label="Date Of Birth"
+                                                    type="date"
+                                                    //label="Date Of Birth"
                                                     onChange={this.handleChange}
                                                 />
                                             </Grid>
@@ -444,6 +445,11 @@ export class ProposalForm extends Component {
                                                     component={TextField}
                                                     type="number"
                                                     label="Sort Code"
+                                                    InputProps={{
+                                                        inputProps: {
+                                                            max: 99999, min: 10
+                                                        }
+                                                    }}
                                                     onChange={this.handleChange}
                                                 />
                                             </Grid>
@@ -456,6 +462,11 @@ export class ProposalForm extends Component {
                                                     component={TextField}
                                                     type="number"
                                                     label="Account Number"
+                                                    InputProps={{
+                                                        inputProps: {
+                                                            max: 99999999, min: 10
+                                                        }
+                                                    }}
                                                     onChange={this.handleChange}
                                                 />
                                             </Grid>
