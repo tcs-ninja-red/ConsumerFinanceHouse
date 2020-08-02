@@ -12,8 +12,11 @@ const ProposalDecisionPageContainer = new reduxForm({
 export const mapStateToProps = state => ({
     proposalSuccess: state.proposal.proposalSuccess,
     proposalFail: state.proposal.proposalFail,
-    vehicleDetails: state.financeHouse.vehicleDetails[0],
     proposalStatus: state.proposalStatus,
+    selectedFinHouse: state.financeHouse.selectedForQuote,
+    selectedQuote: (state.quote.SelectedProduct = "HP" ? state.quote.HPQuoteResults :
+        state.quote.PCPQuoteResults),
+    selectedProposal: state.proposal.proposalReqObj,
 });
 
 export const mapDispatchToProps = (dispatch, ownProps) => ({
