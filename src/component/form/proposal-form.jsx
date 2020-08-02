@@ -45,41 +45,83 @@ export class ProposalForm extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const target = event.target;
+        // const target = event.target;
 
-        this.setState({
-            customer: [{
-                title: event.target.title.value,
-                foreName: event.target.foreName.value,
-                middleName: event.target.middleName.value,
-                surName: event.target.surName.value,
-                telephone: event.target.telephone.value,
-                email: event.target.email.value,
-                dob: event.target.dob.value,
-                gender: event.target.gender.value,
-                country: event.target.country.value,
-                maritalStatus: event.target.maritalStatus.value,
-
-                postcode: event.target.postcode.value,
-                address: event.target.address.value,
-                yearsAtAddress: event.target.yearsAtAddress.value,
-                monthsAtAddress: event.target.monthsAtAddress.value,
-
-                occupation: event.target.occupation.value,
-                yearsAtEmployment: event.target.yearsAtEmployment.value,
-                monthsAtEmployment: event.target.monthsAtEmployment.value,
-                grossAnnualSalary: event.target.grossAnnualSalary.value,
-
-                accountName: event.target.accountName.value,
-                accountType: event.target.accountType.value,
-                sortCode: event.target.sortCode.value,
-                accountNumber: event.target.accountNumber.value
-            }]
-        });
-
-        // console.log(this.state);
-        this.props.toProposal(this.state);
+        this.SaveproposalReq();
     }
+
+    SaveproposalReq = () => {
+        const vehicle = this.props.selectedFinHouse.vehicleDetails;
+        const quote = this.props.selectedQuote;
+
+        const proposalReqObject = {
+            "dealer_id": (quote.dealer_id ? quote.dealer_id : "54000001"),
+            "financial": {
+                "product": (quote.financial.product ? quote.financial.product : "PCP"),
+                "cash_price": (quote.financial.cash_price ? quote.financial.cash_price : 10000),
+                "deposit_amount": (quote.financial.deposit_amount ? quote.financial.deposit_amount : 2000),
+                "term": (quote.financial.term ? quote.financial.term : 12)
+            },
+            "vehicle": {
+                "vehicle_code": (vehicle.vehicle_code ? vehicle.vehicle_code : "vh01"),
+                "vehicle_mileage": (vehicle.vehicle_mileage ? vehicle.vehicle_mileage : 5000),
+                "registration_month": (vehicle.registration_month ? vehicle.registration_month : 1),
+                "registration_year": (vehicle.registration_year ? vehicle.registration_year : 2020),
+                "make": (vehicle.make ? vehicle.make : "Ford"),
+                "model": (vehicle.model ? vehicle.model : "Focus"),
+                "description": (vehicle.description ? vehicle.description : "2019 model"),
+                "model_year": (vehicle.model_year ? vehicle.model_year : 2019)
+            },
+            "excess_mileage": (quote.excess_mileage ? quote.excess_mileage : 0),
+            "max_annual_mileage": (quote.max_annual_mileage ? quote.max_annual_mileage : 6000),
+            "first_payment_amount": (quote.first_payment_amount ? quote.first_payment_amount : 113.91),
+            "monthly_payment_amount": (quote.monthly_payment_amount ? quote.monthly_payment_amount : 113.91),
+            "final_payment_amount": (quote.final_payment_amount ? quote.final_payment_amount : 6500),
+            "amount_of_credit": (quote.amount_of_credit ? quote.amount_of_credit : 8000),
+            "total_charge_for_credit": (quote.total_charge_for_credit ? quote.total_charge_for_credit : 1120),
+            "fixed_rate_interest": (quote.fixed_rate_interest ? quote.fixed_rate_interest : 7),
+            "apr": (quote.apr ? quote.apr : 7),
+            "total_amount_payable": (quote.total_amount_payable ? quote.total_amount_payable : 9120),
+            "customer": {
+                "title": this.state.title,
+                "fore_name": this.state.foreName,
+                "middle_name": this.state.middleName,
+                "surname": this.state.surName,
+                "date_of_birth": this.state.dob,
+                "email": this.state.email,
+                "phone": this.state.telephone,
+                "gender": this.state.gender,
+                "marital_status": this.state.maritalStatus,
+                "country_of_origin": this.state.country,
+                "address": {
+                    "address1": this.state.address,
+                    "address2": "",
+                    "address3": "",
+                    "postcode": this.state.postcode,
+                    "town": "",
+                    "city": "",
+                    "time_at_address": this.state.yearsAtAddress
+                },
+                "employment": {
+                    "occupation": this.state.occupation,
+                    "years_at_employment": this.state.yearsAtEmployment,
+                    "months_at_employment": this.state.monthsAtEmployment,
+                    "gross_annual_salary": this.state.grossAnnualSalary
+                },
+                "bank_account": {
+                    "account_name": this.state.accountName,
+                    "account_number": this.state.accountNumber,
+                    "sort_code": this.state.sortCode
+                }
+
+            }
+        };
+
+        console.log(proposalReqObject);
+        //console.log('Customer object', this.state.title);
+        this.props.toProposal(proposalReqObject);
+    }
+
 
     handleChange = (e) => {
         this.setState({ [e.target.name]: e.target.value });
@@ -87,7 +129,7 @@ export class ProposalForm extends Component {
 
 
     render() {
-        const { fullState, selectedFinHouse, toProposal } = this.props;
+        const { fullState, selectedFinHouse, selectedQuote, toProposal } = this.props;
         return (
             <React.Fragment>
                 <div className="proposal-container">
@@ -98,9 +140,12 @@ export class ProposalForm extends Component {
                         <span className="is-size-3 has-text-weight-medium">Complete your proposal</span>
                     </div>
                     <div className="proposal-content">
-                        {this.props.selectedFinHouse && <div className="level">
-                            <VehicleSummaryForm selectedFinHouse={selectedFinHouse}></VehicleSummaryForm>
-                        </div>}
+                        {/* {this.props.selectedFinHouse && */}
+                        <div className="level">
+                            <VehicleSummaryForm selectedFinHouse={selectedFinHouse} selectedQuote={selectedQuote}
+                            ></VehicleSummaryForm>
+                        </div>
+                        {/* } */}
                         <form id="proposalForm" onSubmit={this.handleSubmit} >
                             <div>
                                 {/* temp */}

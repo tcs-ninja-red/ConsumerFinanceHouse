@@ -11,41 +11,59 @@ export class ProposalDecisionForm extends Component {
     }
 
     render() {
-        const { proposalSuccess, proposalFail, vehicleDetails, proposalStatus } = this.props;
+        const { proposalSuccess, proposalFail, selectedFinHouse, selectedQuote, selectedProposal, proposalStatus } = this.props;
 
         return (
             <React.Fragment>
-                <div className="quotes-container">
+                <div className="proposal-container">
 
-                    {/* <a className="navbar-brand" href="#">
-                        <img className="logo-small" src={require("../../assets/images/logo.png")} />
-                    </a> */}
-                    <span className="is-size-3">Proposal Decision</span>
-                    <hr className="heading-divider" />
-                    {this.props.vehicleDetails && <div className="level">
-                        <VehicleSummaryForm vehicle={this.props.vehicleDetails}></VehicleSummaryForm>
-                    </div>}
-                    {this.props.vehicleDetails && <hr className="heading-divider" />}
-                    {/* <br /> */}
+                    <div className="title-bar">
+                        <a className="navbar-brand" href="#">
+                            <img className="logo-small" src={require("../../assets/images/logo.png")} />
+                        </a>
+                        <span className="is-size-3 has-text-weight-medium">Proposal Decision</span>
+                    </div>
 
-                    <div style={{ marginTop: 0 }}>
-                        <Paper variant="h5" component="h2" gutterBottom >
-                            {proposalStatus && <Typography>
-                                Something went wrong! Please try again after sometime!
+                    <div className="proposal-content">
+                        <div className="level">
+                            <VehicleSummaryForm selectedFinHouse={selectedFinHouse} selectedQuote={selectedQuote}
+                                selectedProposal={selectedProposal} ></VehicleSummaryForm>
+                        </div>
+
+                        {/* {this.props.selectedFinHouse && <hr className="heading-divider" />} */}
+                        {/* <br /> */}
+
+                        <div style={{ marginTop: 0 }}>
+                            <Paper variant="h5" component="h2" gutterBottom >
+                                {proposalStatus && <Typography>
+                                    Something went wrong! Please try again after sometime!
                             </Typography>}
-                            {proposalSuccess && <Typography variant="h5" component="h2">
-                                Decision:  {proposalSuccess}
-                            </Typography>}
-                            {proposalFail && <Typography variant="h5" component="h2">
-                                Fail:  {proposalFail}
-                            </Typography>}
-                            {!proposalSuccess && !proposalFail && <Typography variant="h5" component="h2">
-                                Something went wrong! Please try again after sometime!  {proposalFail}
-                            </Typography>}
+                                {proposalSuccess && proposalSuccess.decision &&
+                                    <Typography variant="h5" component="h2">
+                                        Decision:  {proposalSuccess.decision.decision_message}
+                                    </Typography>}
+                                {proposalFail &&
+                                    <Typography variant="h5" component="h2">
+                                        Fail:
+                                     {/* {proposalFail.messages} */}
 
-                        </Paper>
+                                        {proposalFail.messages.map((message, idx1) => (
+                                            <div className="columns" key={idx1}>
+                                                <div className="column">
+                                                    <span>
+                                                        {message}
+                                                    </span></div></div>
+                                        ))}
+
+                                    </Typography>}
+                                {!proposalSuccess && !proposalFail && <Typography variant="h5" component="h2">
+                                    Something went wrong! Please try again after sometime!  {proposalFail}
+                                </Typography>}
+
+                            </Paper>
 
 
+                        </div>
                     </div>
                 </div>
 
