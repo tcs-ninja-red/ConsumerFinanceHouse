@@ -30,23 +30,22 @@ export class ProposalDecisionForm extends Component {
                                 selectedProposal={selectedProposal} ></VehicleSummaryForm>
                         </div>
 
-                        {/* {this.props.selectedFinHouse && <hr className="heading-divider" />} */}
-                        {/* <br /> */}
-
-                        <div style={{ marginTop: 0 }}>
-                            <Paper variant="h5" component="h2" gutterBottom >
-                                {proposalStatus && <Typography>
+                        <div class="box">
+                            {proposalStatus &&
+                                <Typography className="is-size-6">
                                     Something went wrong! Please try again after sometime!
                             </Typography>}
-                                {proposalSuccess && proposalSuccess.decision &&
-                                    <Typography variant="h5" component="h2">
-                                        Decision:  {proposalSuccess.decision.decision_message}
-                                    </Typography>}
-                                {proposalFail &&
-                                    <Typography variant="h5" component="h2">
-                                        Fail:
-                                     {/* {proposalFail.messages} */}
 
+                            {proposalSuccess && proposalSuccess.decision &&
+                                <Typography className="is-size-6">
+                                    <div className="is-size-3 has-text-weight-bold">Decision:</div>
+                                    <div>{proposalSuccess.decision.decision_message}</div>
+                                </Typography>}
+
+                            {proposalFail &&
+                                <Typography className="is-size-6">
+                                    <div className="is-size-3 has-text-weight-bold">Fail:</div>
+                                    <div>
                                         {proposalFail.messages.map((message, idx1) => (
                                             <div className="columns" key={idx1}>
                                                 <div className="column">
@@ -54,16 +53,16 @@ export class ProposalDecisionForm extends Component {
                                                         {message}
                                                     </span></div></div>
                                         ))}
-
-                                    </Typography>}
-                                {!proposalSuccess && !proposalFail && <Typography variant="h5" component="h2">
-                                    Something went wrong! Please try again after sometime!  {proposalFail}
+                                    </div>
                                 </Typography>}
 
-                            </Paper>
-
-
+                            {!proposalSuccess && !proposalFail &&
+                                <Typography className="is-size-6">
+                                    Something went wrong! Please try again after sometime!
+                                    {proposalFail}
+                                </Typography>}
                         </div>
+
                     </div>
                 </div>
 

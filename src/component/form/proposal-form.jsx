@@ -55,33 +55,33 @@ export class ProposalForm extends Component {
         const quote = this.props.selectedQuote;
 
         const proposalReqObject = {
-            "dealer_id": (quote.dealer_id ? quote.dealer_id : "54000001"),
+            "dealer_id": quote.dealer_id,
             "financial": {
-                "product": (quote.financial.product ? quote.financial.product : "PCP"),
-                "cash_price": (quote.financial.cash_price ? quote.financial.cash_price : 10000),
-                "deposit_amount": (quote.financial.deposit_amount ? quote.financial.deposit_amount : 2000),
-                "term": (quote.financial.term ? quote.financial.term : 12)
+                "product": quote.financial.product,
+                "cash_price": quote.financial.cash_price,
+                "deposit_amount": quote.financial.deposit_amount,
+                "term": quote.financial.term
             },
             "vehicle": {
-                "vehicle_code": (vehicle.vehicle_code ? vehicle.vehicle_code : "vh01"),
-                "vehicle_mileage": (vehicle.vehicle_mileage ? vehicle.vehicle_mileage : 5000),
-                "registration_month": (vehicle.registration_month ? vehicle.registration_month : 1),
-                "registration_year": (vehicle.registration_year ? vehicle.registration_year : 2020),
-                "make": (vehicle.make ? vehicle.make : "Ford"),
-                "model": (vehicle.model ? vehicle.model : "Focus"),
-                "description": (vehicle.description ? vehicle.description : "2019 model"),
-                "model_year": (vehicle.model_year ? vehicle.model_year : 2019)
+                "vehicle_code": vehicle.vehicle_code,
+                "vehicle_mileage": vehicle.vehicle_mileage,
+                "registration_month": vehicle.registration_month,
+                "registration_year": vehicle.registration_year,
+                "make": vehicle.make_name,
+                "model": vehicle.model_name,
+                "description": vehicle.description,
+                "model_year": vehicle.model_year
             },
-            "excess_mileage": (quote.excess_mileage ? quote.excess_mileage : 0),
-            "max_annual_mileage": (quote.max_annual_mileage ? quote.max_annual_mileage : 6000),
-            "first_payment_amount": (quote.first_payment_amount ? quote.first_payment_amount : 113.91),
-            "monthly_payment_amount": (quote.monthly_payment_amount ? quote.monthly_payment_amount : 113.91),
-            "final_payment_amount": (quote.final_payment_amount ? quote.final_payment_amount : 6500),
-            "amount_of_credit": (quote.amount_of_credit ? quote.amount_of_credit : 8000),
-            "total_charge_for_credit": (quote.total_charge_for_credit ? quote.total_charge_for_credit : 1120),
-            "fixed_rate_interest": (quote.fixed_rate_interest ? quote.fixed_rate_interest : 7),
-            "apr": (quote.apr ? quote.apr : 7),
-            "total_amount_payable": (quote.total_amount_payable ? quote.total_amount_payable : 9120),
+            "excess_mileage": quote.excess_mileage,
+            "max_annual_mileage": quote.max_annual_mileage,
+            "first_payment_amount": quote.first_payment_amount,
+            "monthly_payment_amount": quote.monthly_payment_amount,
+            "final_payment_amount": quote.final_payment_amount,
+            "amount_of_credit": quote.amount_of_credit,
+            "total_charge_for_credit": quote.total_charge_for_credit,
+            "fixed_rate_interest": quote.fixed_rate_interest,
+            "apr": quote.apr,
+            "total_amount_payable": quote.total_amount_payable,
             "customer": {
                 "title": this.state.title,
                 "fore_name": this.state.foreName,
@@ -95,12 +95,12 @@ export class ProposalForm extends Component {
                 "country_of_origin": this.state.country,
                 "address": {
                     "address1": this.state.address,
-                    "address2": "",
-                    "address3": "",
+                    "address2": "Address 2",
+                    "address3": "Address 3",
                     "postcode": this.state.postcode,
-                    "town": "",
-                    "city": "",
-                    "time_at_address": this.state.yearsAtAddress
+                    "town": "Grangetown",
+                    "city": "Cardiff",
+                    "time_at_address": (parseInt(this.state.yearsAtAddress) * 12) + parseInt(this.state.monthsAtAddress)
                 },
                 "employment": {
                     "occupation": this.state.occupation,
@@ -424,7 +424,7 @@ export class ProposalForm extends Component {
                                                 />
                                             </Grid>
 
-                                            <Grid item xs={8}>
+                                            {/* <Grid item xs={8}>
                                                 <Field
                                                     fullWidth
                                                     required
@@ -434,7 +434,7 @@ export class ProposalForm extends Component {
                                                     label="Account Type"
                                                     onChange={this.handleChange}
                                                 />
-                                            </Grid>
+                                            </Grid> */}
 
                                             <Grid item xs={8}>
                                                 <Field

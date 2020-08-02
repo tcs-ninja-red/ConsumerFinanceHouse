@@ -199,7 +199,8 @@ export class VehicleSummaryForm extends Component {
                                                 <br />
                                                 <div className="is-size-6">
                                                     <span>Contact at {this.props.selectedProposal.customer.phone} {" "}
-                                                        {this.props.selectedProposal.customer.email}</span> </div>
+                                                        <a href={this.props.selectedProposal.customer.email}>
+                                                            {this.props.selectedProposal.customer.email}</a></span> </div>
                                                 <br />
                                                 <div className="is-size-6">
                                                     <span>DOB: {this.props.selectedProposal.customer.date_of_birth}</span> </div>
@@ -214,8 +215,8 @@ export class VehicleSummaryForm extends Component {
                                                     <span>Marital Status: {this.getMaritalStatus(this.props.selectedProposal.customer.marital_status)}</span> </div>
                                                 <br />
                                                 <div className="is-size-6">
-                                                    <span>Address: {this.props.selectedProposal.customer.address1} {" "}
-                                                        {this.props.selectedProposal.customer.postcode}</span> </div>
+                                                    <span>Address: {this.props.selectedProposal.customer.address.address1} {", "}
+                                                        {this.props.selectedProposal.customer.address.postcode}</span> </div>
                                                 <br />
                                             </div>
                                         </div>
