@@ -68,11 +68,11 @@ export default function QuoteDetails(QuoteState) {
     };
 
     const handleHPProduct = (event) => {
-        QuoteState.toProposal("HP");
+        QuoteState.toProposal(QuoteState.HPQuoteResults);
     };
 
     const handlePCPProduct = (event) => {
-        QuoteState.toProposal("PCP");
+        QuoteState.toProposal(QuoteState.PCPQuoteresponse);
     };
 
     return (

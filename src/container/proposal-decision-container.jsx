@@ -14,8 +14,9 @@ export const mapStateToProps = state => ({
     proposalFail: state.proposal.proposalFail,
     proposalStatus: state.proposalStatus,
     selectedFinHouse: state.financeHouse.selectedForQuote,
-    selectedQuote: (state.quote.SelectedProduct = "HP" ? state.quote.HPQuoteResults :
-        state.quote.PCPQuoteResults),
+    // selectedQuote: (state.quote.SelectedProduct = "HP" ? state.quote.HPQuoteResults :
+    //     state.quote.PCPQuoteResults),
+    selectedQuote: state.quote.SelectedProduct,
     selectedProposal: state.proposal.proposalReqObj,
 });
 
