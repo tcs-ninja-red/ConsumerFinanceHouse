@@ -1,0 +1,72 @@
+.logo {
+  width: 130px;
+  height: 55px;
+}
+
+.logo-wrapper {
+  display: block;
+  padding-bottom: 10px;
+}
+
+.nav-top {
+  position: absolute;
+  width: 99%;
+  color: #00b89c;
+  /* color: white; */
+  padding: 0 20px;
+  font-weight: 450;
+  text-transform: uppercase;
+  margin-bottom: 150px;
+}
+
+/* .nav-bg-custom {
+  background-color: #d8f5ff;
+} */
+
+@import url("https://cdn.syncfusion.com/ej2/material.css");
+.home-container {
+  color: white;
+  background-image: url("../assets/images/banner.jpg");
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+
+  /* position: fixed; */
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+.home-container .level-right a {
+  color: white;
+  padding: 0 8px;
+  font-weight: 500;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.level-right .level-item a:hover {
+  color: #00b89c;
+}
+
+.home-wrapper {
+  background: rgba(0, 0, 0, 0.4);
+  height: 100vh;
+  padding: 25px;
+}
+
+.home-body {
+  /* position: absolute; */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+
+/*When screen size is smaller: clears floats and other alignments*/
+@media (max-width: 768px) {
+  .navbar div {
+    float: none;
+  }
+}

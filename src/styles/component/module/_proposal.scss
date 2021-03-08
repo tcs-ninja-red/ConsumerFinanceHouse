@@ -1,0 +1,20 @@
+.proposal-container {
+    .title-bar {
+        padding: 25px 50px;
+        background-color: #00d1b2;
+        color: white;
+    }
+
+    .proposal-content {
+        margin: 50px 200px;
+
+        ul {
+            list-style: disc;
+            margin-left: 30px;
+        }
+
+        .proposal-content-form {
+            width: 50%;
+        }
+    }
+}
