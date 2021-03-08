@@ -8,7 +8,7 @@ export const SELECTED_PRODUCT = "SELECTED_PRODUCT";
 export const FAIL_HPQUOTE = "FAIL_HPQUOTE";
 export const FAIL_PCPQUOTE = "FAIL_PCPQUOTE";
 
-const API_URL = process.env.REACT_APP_API_ROOT;
+const API_URL = "https://consumerfinancequoteapi-4thjzexd2a-uc.a.run.app";
 console.log(`API URL : ${API_URL}`);
 
 /*

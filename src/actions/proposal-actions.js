@@ -3,7 +3,7 @@ export const SUCCESS_PROPOSAL = "SUCCESS_PROPOSAL";
 export const FAIL_PROPOSAL = "FAIL_PROPOSAL";
 export const PROPOSAL_REQ_OBJ = "PROPOSAL_REQ_OBJ";
 
-const API_URL = process.env.REACT_APP_API_ROOT;
+const API_URL = "https://consumerfinancequoteapi-4thjzexd2a-uc.a.run.app";
 console.log(`API URL : ${API_URL}`);
 
 export const getProposalReqObj = (json) => ({
