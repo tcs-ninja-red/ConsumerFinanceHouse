@@ -3,6 +3,8 @@ export const SUCCESS_PROPOSAL = "SUCCESS_PROPOSAL";
 export const FAIL_PROPOSAL = "FAIL_PROPOSAL";
 export const PROPOSAL_REQ_OBJ = "PROPOSAL_REQ_OBJ";
 
+const API_URL = process.env.REACT_APP_API_ROOT;
+console.log(`API URL : ${API_URL}`);
 
 export const getProposalReqObj = (json) => ({
     type: PROPOSAL_REQ_OBJ,
@@ -36,7 +38,7 @@ export function generateProposal(proposalReqObj) {
     console.log("proposal action method");
     return function (dispatch) {
         return fetch(
-            `http://51.132.233.171:44301/api/v1/proposals`, {
+            `${API_URL}/api/v1/proposals`, {
             "method": "POST",
             "headers": {
                 "x-rapidapi-host": "fairestdb.p.rapidapi.com",

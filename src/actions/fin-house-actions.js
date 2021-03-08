@@ -8,6 +8,9 @@ export const TO_QUOTE = "TO_QUOTE";
 export const FIN_RESET = "FIN_RESET";
 export const CAR_IMG = "CAR_IMG";
 
+const API_URL = process.env.REACT_APP_API_ROOT;
+console.log(`API URL : ${API_URL}`);
+
 export const reset = () => ({
   type: FIN_RESET,
 });
@@ -99,7 +102,7 @@ export function searchDealer(postcode) {
     //dispatch(requestPosts());
     console.log("postcode", postcode);
     return fetch(
-      `http://51.132.233.171:44301/api/v1/dealers?postcode=${postcode}`
+      `${API_URL}/api/v1/dealers?postcode=${postcode}`
     )
       .then(
         (response) => response.json(),
@@ -115,7 +118,7 @@ export function searchDealer(postcode) {
 ///Get Vehicle Make
 export function getVehicleMakes() {
   return function (dispatch) {
-    return fetch(`http://51.132.233.171:44301/api/v1/vehicles/makes`)
+    return fetch(`${API_URL}/api/v1/vehicles/makes`)
       .then(
         (response) => response.json(),
         (error) => console.log("An error occurred.", error)
@@ -131,7 +134,7 @@ export function getVehicleMakes() {
 export function getVehicleModels(make) {
   return function (dispatch) {
     return fetch(
-      `http://51.132.233.171:44301/api/v1/vehicles/makes/${make}/models`
+      `${API_URL}/api/v1/vehicles/makes/${make}/models`
     )
       .then(
         (response) => response.json(),
@@ -148,7 +151,7 @@ export function getVehicleModels(make) {
 export function getVehicleDescriptions(make, model) {
   return function (dispatch) {
     return fetch(
-      `http://51.132.233.171:44301/api/v1/vehicles/makes/${make}/models/${model}/descriptions`
+      `${API_URL}/api/v1/vehicles/makes/${make}/models/${model}/descriptions`
     )
       .then(
         (response) => response.json(),
@@ -165,7 +168,7 @@ export function getVehicleDescriptions(make, model) {
 export function getVehicleDetails(make, model, description) {
   return function (dispatch) {
     return fetch(
-      `http://51.132.233.171:44301/api/v1/vehicles?make_name=${make}&model_name=${model}&description=${description}`
+      `${API_URL}/api/v1/vehicles?make_name=${make}&model_name=${model}&description=${description}`
     )
       .then(
         (response) => response.json(),
@@ -181,7 +184,7 @@ export function getVehicleDetails(make, model, description) {
 export function getAllVehicleDetails(make, model) {
   return function (dispatch) {
     return fetch(
-      `http://51.132.233.171:44301/api/v1/vehicles?make_name=${make}&model_name=${model}`
+      `${API_URL}/api/v1/vehicles?make_name=${make}&model_name=${model}`
     )
       .then(
         (response) => response.json(),
