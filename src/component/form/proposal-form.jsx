@@ -447,7 +447,7 @@ export class ProposalForm extends Component {
                                                     label="Sort Code"
                                                     InputProps={{
                                                         inputProps: {
-                                                            max: 99999, min: 10
+                                                            max: 99999, min: 10000
                                                         }
                                                     }}
                                                     onChange={this.handleChange}
@@ -464,7 +464,7 @@ export class ProposalForm extends Component {
                                                     label="Account Number"
                                                     InputProps={{
                                                         inputProps: {
-                                                            max: 99999999, min: 10
+                                                            max: 99999999, min: 10000000
                                                         }
                                                     }}
                                                     onChange={this.handleChange}

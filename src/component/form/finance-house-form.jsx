@@ -156,7 +156,7 @@ export class FinanceHouseForm extends Component {
                   label="Car make"
                   labelWidth={110}
                   onChange={this.handleChangeMake}
-                  helperText="Pleae chose one of the car make"
+                  helperText="please choose one of the car make"
                 >
                   <option value="" />
                   {financeHouseState.makeList &&
@@ -174,7 +174,7 @@ export class FinanceHouseForm extends Component {
                   label="Car model"
                   labelWidth={110}
                   onChange={this.handleChangeModel}
-                  helperText="Pleae chose one of the car model"
+                  helperText="Please choose one of the car model"
                 >
                   <option value="" />
                   {financeHouseState.modelList &&
@@ -192,7 +192,7 @@ export class FinanceHouseForm extends Component {
                   label="Car segment"
                   labelWidth={110}
                   onChange={this.handleChangeDesc}
-                  helperText="Pleae chose one of the car segment"
+                  helperText="Please choose one of the car segment"
                 >
                   <option value="" />
                   {financeHouseState.descriptionList &&
@@ -210,7 +210,7 @@ export class FinanceHouseForm extends Component {
                   label="Car color"
                   labelWidth={110}
                   onChange={this.handleChangeColor}
-                  helperText="Pleae chose one of the car color"
+                  helperText="Please choose one of the car color"
                 >
                   <option value="" />
                   {financeHouseState.vehicleDetails &&
@@ -230,7 +230,7 @@ export class FinanceHouseForm extends Component {
                   onChange={this.handlePostCodeChange}
                   name="findDealer"
                   label="Find your nearest dealer"
-                  helperText="Please enter your nearest post code"
+                  helperText="Please enter your nearest postcode"
                 />
               </div>
               <br />
@@ -255,9 +255,9 @@ export class FinanceHouseForm extends Component {
             <br />
             <br />
             {financeHouseState.vehicleDetails &&
-            financeHouseState.vehicleDetails.length > 0 &&
-            financeHouseState.dealerSearchResults &&
-            financeHouseState.dealerSearchResults.length > 0 ? (
+              financeHouseState.vehicleDetails.length > 0 &&
+              financeHouseState.dealerSearchResults &&
+              financeHouseState.dealerSearchResults.length > 0 ? (
               financeHouseState.dealerSearchResults.map((dealer, idx) => (
                 <div className="box" key={idx}>
                   {financeHouseState.vehicleDetails.map((vehicle, idx1) => (
