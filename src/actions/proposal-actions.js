@@ -3,7 +3,7 @@ export const SUCCESS_PROPOSAL = "SUCCESS_PROPOSAL";
 export const FAIL_PROPOSAL = "FAIL_PROPOSAL";
 export const PROPOSAL_REQ_OBJ = "PROPOSAL_REQ_OBJ";
 
-const API_URL = "https://proposalservice-4thjzexd2a-uc.a.run.app";  //"https://consumerfinancequoteapi-4thjzexd2a-uc.a.run.app";
+const API_URL = process.env.REACT_APP_PROPOSAL_SERVICE_URL; //"https://consumerfinancequoteapi-4thjzexd2a-uc.a.run.app";
 console.log(`API URL : ${API_URL}`);
 
 export const getProposalReqObj = (json) => ({
@@ -38,7 +38,7 @@ export function generateProposal(proposalReqObj) {
     console.log("proposal action method");
     return function (dispatch) {
         return fetch(
-            `${API_URL}/api/v1/proposals`, {
+            `${API_URL}/api/v2/proposals`, {
             "method": "POST",
             "headers": {
                 "x-rapidapi-host": "fairestdb.p.rapidapi.com",

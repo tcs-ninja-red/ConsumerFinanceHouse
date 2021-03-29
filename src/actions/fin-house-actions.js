@@ -8,7 +8,7 @@ export const TO_QUOTE = "TO_QUOTE";
 export const FIN_RESET = "FIN_RESET";
 export const CAR_IMG = "CAR_IMG";
 
-const API_URL = "https://consumerfinancequoteapi-4thjzexd2a-uc.a.run.app";
+const API_URL = process.env.REACT_APP_VEHICLE_SERVICE_URL; //"https://consumerfinancequoteapi-4thjzexd2a-uc.a.run.app";
 console.log(`API URL : ${API_URL}`);
 
 export const reset = () => ({
