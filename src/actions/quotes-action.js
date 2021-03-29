@@ -16,7 +16,7 @@ export const getMake = (json) => ({
     type: GET_MAKE,
     json: json,
 });
-export const searchResu                                                             1lts = (json) => ({
+export const searchResults = (json) => ({
     type: SEARCH_DEALERS,
     json: json,
 });
