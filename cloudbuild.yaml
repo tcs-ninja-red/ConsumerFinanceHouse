@@ -1,10 +1,10 @@
 steps:
 - id: docker build
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/motor-house:$COMMIT-SHA', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/motor-house:$COMMIT_SHA', '.']
 - id: docker push
   name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/motor-house:$COMMIT-SHA']
+  args: ['push', 'gcr.io/$PROJECT_ID/motor-house:$COMMIT_SHA']
 - id: Deploy to Cloud Run
   name: 'gcr.io/cloud-builders/gcloud'
   args:
@@ -12,7 +12,7 @@ steps:
   - deploy
   - motor-house 
   - --image
-  - gcr.io/$PROJECT_ID/motor-house:$COMMIT-SHA
+  - gcr.io/$PROJECT_ID/motor-house:$COMMIT_SHA
   - --region
   - REGION # e.g. us-central1
   - --platform
@@ -22,4 +22,4 @@ steps:
   - "8084"
 
 images:
-- gcr.io/$PROJECT_ID/motor-house:$COMMIT-SHA
+- gcr.io/$PROJECT_ID/motor-house:$COMMIT_SHA
