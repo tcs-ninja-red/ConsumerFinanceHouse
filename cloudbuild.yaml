@@ -19,7 +19,7 @@ steps:
   - managed
   - --allow-unauthenticated
   - --port
-  - "8084"
+  - "80"
 
 images:
 - gcr.io/$PROJECT_ID/motor-house:$COMMIT_SHA
